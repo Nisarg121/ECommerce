@@ -1,16 +1,16 @@
 import React from "react";
 import About from "../components/about/About";
-import Categories from "../components/categories/Categories";
+import CategorieList from "../components/categories/CategorieList";
 import Reviews from "../components/customerReviews/Reviews";
-import MainSection from "../components/MainSection/MainSection";
-import Products from "../components/products/Products";
+import Banner from "../components/Banner/Banner";
+import ProductList from "../components/product/ProductList";
 
 const Homepage = () => {
   return (
     <>
-      <MainSection />
-      <Categories />
-      <Products />
+      <Banner />
+      <CategorieList />
+      <ProductList />
       <About />
       <Reviews />
     </>

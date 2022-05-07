@@ -59,9 +59,9 @@
     media="all"
     href="css/app.css">
 </head>
-
 <body>
-  <div id="root" class="page"></div>
+  <div id="root"
+    class="page"></div>
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -72,6 +72,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
   <script>var viewportmeta = document.querySelector('meta[name="viewport"]');
     if (viewportmeta) {
       if (screen.width < 375) {
@@ -81,8 +82,70 @@
         viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
       }
     }</script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
   <script src="js/app.js"></script>
+  <script type="text/javascript">
+      var prevArrow = '<button type="button" class="slick-prev"><svg class="icon icon-arrow-prev"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img/sprite.svg#icon-arrow-prev"></use></svg></button>',
+        nextArrow = '<button type="button" class="slick-next"><svg class="icon icon-arrow-next"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img/sprite.svg#icon-arrow-next"></use></svg></button>';
+    
+      $(document).ready(function () {
+    
+        // slider categories
+        $('.js-slider-categories').slick({
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          arrows: true,
+          prevArrow: prevArrow,
+          nextArrow: nextArrow,
+          speed: 600,
+          infinite: true,
+          responsive: [{
+            breakpoint: 1366,
+            settings: {
+              slidesToShow: 7
+            }
+          }, {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 6
+            }
+          }, {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 5
+            }
+          }, {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 4
+            }
+          }, {
+            breakpoint: 640,
+            settings: {
+              slidesToShow: 2
+            }
+          }]
+        });
+        
+        // slider review
+        $('.js-slider-review').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          prevArrow: prevArrow,
+          nextArrow: nextArrow,
+          dots: true,
+          speed: 600,
+          responsive: [{
+            breakpoint: 1024,
+            settings: {
+              adaptiveHeight: true
+            }
+          }]
+        });
+      });
+    
+    </script>
 </body>
 
 </html>

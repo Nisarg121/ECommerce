@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const headerClickHandler = () => {
@@ -54,7 +55,7 @@ const Header = (props) => {
           className="header__burger js-header-burger"
           onClick={headerClickHandler}
         ></button>
-        <a className="header__logo" href="index.html">
+        <Link className="header__logo" to="/HomePage">
           <img
             className="header__pic header__pic_black-desktop"
             src="img/logo.svg"
@@ -75,7 +76,7 @@ const Header = (props) => {
             src="img/logo-mobile-white.svg"
             alt=""
           />
-        </a>
+        </Link>
         <div className="header__control">
           <div className="header__item header__item_hidden">
             <div className="header__search search js-search">
@@ -193,9 +194,13 @@ const Header = (props) => {
           </form>
           <div className="menu__container">
             <div className="menu__list js-menu-list">
-              <a className="menu__item active" href="index.html">
+              <Link
+                className="menu__item active"
+                to="/HomePage"
+                onClick={headerClickHandler}
+              >
                 Home
-              </a>
+              </Link>
               <div className="menu__item js-menu-item">
                 <div className="menu__head js-menu-head">
                   Categories
@@ -242,15 +247,13 @@ const Header = (props) => {
                   </div>
                 </div>
               </div>
-              <a className="menu__item" href="#">
-                Blog
-              </a>
-              <a className="menu__item" href="about-us.html">
+              <Link
+                className="menu__item"
+                to="/aboutUs"
+                onClick={headerClickHandler}
+              >
                 About
-              </a>
-              <a className="menu__item" href="contacts.html">
-                Contact
-              </a>
+              </Link>
             </div>
           </div>
           <a className="menu__btn btn btn_green btn_wide" href="login.html">

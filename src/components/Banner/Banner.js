@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MainSection = () => {
+const Banner = () => {
   return (
     <div className="main section">
       <div className="main__center center">
@@ -22,4 +22,4 @@ const MainSection = () => {
   );
 };
 
-export default MainSection;
+export default Banner;
