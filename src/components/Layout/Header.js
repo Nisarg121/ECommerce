@@ -1,60 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CategoryName from "../categories/CategoryName";
 
 const Header = (props) => {
-  const headerClickHandler = () => {
-    var header = $(".js-header"),
-      burger = header.find(".js-header-burger"),
-      menu = header.find(".js-menu"),
-      items = menu.find(".js-menu-item"),
-      close = menu.find(".js-menu-close"),
-      back = menu.find(".js-menu-back"),
-      html = $("html"),
-      body = $("body");
-
-    burger.toggleClass("active");
-    menu.toggleClass("visible");
-    html.toggleClass("no-scroll");
-    body.toggleClass("no-scroll");
-
-    items.each(function () {
-      var item = $(this),
-        head = item.find(".js-menu-head");
-
-      head.on("click", function () {
-        if (!item.hasClass("active")) {
-          menu.removeClass("left");
-          items.removeClass("active");
-          menu.addClass("left");
-          item.addClass("active");
-        } else {
-          items.removeClass("active");
-          menu.removeClass("left");
-        }
-      });
-      back.on("click", function () {
-        menu.removeClass("left");
-        items.removeClass("active");
-      });
-      close.on("click", function () {
-        items.removeClass("active");
-        burger.toggleClass("active");
-        menu.toggleClass("visible");
-        menu.removeClass("left");
-        html.removeClass("no-scroll");
-        body.removeClass("no-scroll");
-      });
-    });
-  };
+  const categoryList = useSelector((state) => state.categoryList);
+  
+  const categoryNames = categoryList.map((categorey) => (
+    <CategoryName
+      key={categorey._id}
+      categoryId={categorey._id}
+      categoryName={categorey.name}
+    />
+  ));
 
   return (
     <header className="header js-header">
       <div className="header__center center">
-        <button
-          className="header__burger js-header-burger"
-          onClick={headerClickHandler}
-        ></button>
+        <button className="header__burger js-header-burger"></button>
         <Link className="header__logo" to="/HomePage">
           <img
             className="header__pic header__pic_black-desktop"
@@ -194,11 +158,7 @@ const Header = (props) => {
           </form>
           <div className="menu__container">
             <div className="menu__list js-menu-list">
-              <Link
-                className="menu__item active"
-                to="/HomePage"
-                onClick={headerClickHandler}
-              >
+              <Link className="menu__item active" to="/HomePage">
                 Home
               </Link>
               <div className="menu__item js-menu-item">
@@ -219,39 +179,10 @@ const Header = (props) => {
                       <use xlinkHref="img/sprite.svg#icon-arrow-prev"></use>
                     </svg>
                   </button>
-                  <div className="menu__group">
-                    <a className="menu__link" href="category.html">
-                      On Sale
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Featured
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Masks
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Eye Care
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Moisturizers
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Treatments
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Night Care
-                    </a>
-                    <a className="menu__link" href="category.html">
-                      Sun Care
-                    </a>
-                  </div>
+                  <div className="menu__group">{categoryNames}</div>
                 </div>
               </div>
-              <Link
-                className="menu__item"
-                to="/aboutUs"
-                onClick={headerClickHandler}
-              >
+              <Link className="menu__item" to="/aboutUs">
                 About
               </Link>
             </div>

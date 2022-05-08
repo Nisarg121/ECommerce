@@ -2,14 +2,66 @@ import React, { useEffect } from "react";
 import { getAllCategries } from "../../apis/Category";
 import useHttp from "../../hooks/use-http";
 import CategoryItem from "./CategoryItem";
+import Slider from "react-slick";
+import { toast } from "react-toastify";
+import { categoryActions } from "../../store/Category";
+import { useDispatch } from "react-redux";
 
 const CategorieList = () => {
+  const dispatch = useDispatch();
+
   const {
     sendRequest,
     status,
     data: categoriesList,
     error,
   } = useHttp(getAllCategries, true);
+
+  const setting = {
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    arrows: true,
+    speed: 600,
+    infinite: true,
+    responsive: [
+      {
+        breakpoint: 1366,
+        settings: {
+          slidesToShow: 7,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
+
+  useEffect(() => {
+    if (status === "completed") {
+      dispatch(categoryActions.addCategories(categoriesList));
+    }
+  }, [status]);
 
   useEffect(() => {
     sendRequest();
@@ -31,9 +83,10 @@ const CategorieList = () => {
     );
   }
 
-  console.log(status);
-  console.log(categoriesList);
-  
+  if (error) {
+    return toast.error(error);
+  }
+
   const categoryList = categoriesList.map((category) => (
     <CategoryItem
       key={category._id}
@@ -51,8 +104,8 @@ const CategorieList = () => {
           Browse by Category
         </h2>
         <div className="categories__container">
-          <div className="categories__slider js-slider-categories">
-            {categoryList}
+          <div>
+            <Slider {...setting}>{categoryList}</Slider>
           </div>
         </div>
       </div>

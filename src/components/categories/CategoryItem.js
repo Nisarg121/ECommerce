@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {categoryImageUrl} from '../../Routes/Routes';
 
 const CategoryItem = (props) => {
   return (
@@ -8,7 +9,7 @@ const CategoryItem = (props) => {
         <div className="categories__icon">
           <img
             className="categories__pic"
-            src="img/categories/shopping-bag.svg"
+            src={`${categoryImageUrl}/${props.img}`}
             alt={props.name}
           />
         </div>

@@ -12,7 +12,7 @@ const ProductItem = (props) => {
             src={`${productImageUrl}/${props.image}`}
             alt={props.name}
             onError={(e) => (
-              (e.target.onerror = null),
+              (e.target.onerror = null)
               (e.target.src = "img/mstile-310x310.png")
             )}
           />

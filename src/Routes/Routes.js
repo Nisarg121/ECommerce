@@ -11,4 +11,5 @@ export const getAllCategriesUrl = `${DOMAIN}/category`;
 export const getAllProductsUrl = `${DOMAIN}/product`;
 
 //images path
-export const productImageUrl = `${DOMAIN}/uploads/product/original`
+export const productImageUrl = `${DOMAIN}/uploads/product/original`;
+export const categoryImageUrl = `${DOMAIN}/uploads/categoryIcon/original`;

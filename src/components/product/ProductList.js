@@ -25,7 +25,7 @@ const ProductList = () => {
           <h2 className="products__title title title_mb-lg">
             Explore out Products
           </h2>
-          <div class="loader centered"></div>
+          <div className="loader centered"></div>
         </div>
       </div>
     );
@@ -34,7 +34,7 @@ const ProductList = () => {
   if (error) {
     return toast.error(error);
   }
-  console.table(productList);
+  
   return (
     <div className="products products_main section">
       <div className="products__center center">
