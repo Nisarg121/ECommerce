@@ -1,6 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const categoriesList = useSelector((state) => state.categoryList);
+
+  const bgModeHandler = () => {
+    const body = document.getElementsByTagName("BODY")[0];
+    body.classList.toggle("dark");
+  };
+
   return (
     <footer className="footer">
       <div className="footer__center center">
@@ -61,7 +70,11 @@ const Footer = () => {
               </a>
             </div>
             <label className="switch js-switch-bg">
-              <input className="switch__input" type="checkbox" />
+              <input
+                className="switch__input"
+                type="checkbox"
+                onClick={bgModeHandler}
+              />
               <span className="switch__in">
                 <span className="switch__tick">
                   <img
@@ -81,30 +94,19 @@ const Footer = () => {
           <div className="footer__col">
             <div className="footer__category">Categories</div>
             <div className="footer__menu">
-              <a className="footer__link" href="category.html">
-                On Sale
-              </a>
-              <a className="footer__link" href="category.html">
-                Featured
-              </a>
-              <a className="footer__link" href="category.html">
-                Masks
-              </a>
-              <a className="footer__link" href="category.html">
-                Eye Care
-              </a>
-              <a className="footer__link" href="category.html">
-                Moisturizers
-              </a>
-              <a className="footer__link" href="category.html">
-                Treatments
-              </a>
-              <a className="footer__link" href="category.html">
-                Night Care
-              </a>
-              <a className="footer__link" href="category.html">
-                Sun Care
-              </a>
+              {categoriesList.length === 0 ? (
+                <div className="loader centered"></div>
+              ) : (
+                categoriesList.map((category) => (
+                  <Link
+                    className="footer__link"
+                    to={`/category/${category._id}`}
+                    key={category._id}
+                  >
+                    {category.name}
+                  </Link>
+                ))
+              )}
             </div>
           </div>
           <div className="footer__col">

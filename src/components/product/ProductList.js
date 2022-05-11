@@ -4,6 +4,7 @@ import useHttp from "../../hooks/use-http";
 import ProductItem from "./ProductItem";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const {
@@ -55,9 +56,9 @@ const ProductList = () => {
           ))}
         </div>
         <div className="products__btns">
-          <a className="products__btn btn btn_green" href="category.html">
+          <Link className="products__btn btn btn_green" to="/category">
             View All
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,72 +1,45 @@
 import React, { useEffect } from "react";
 import Layout from "./components/Layout/Layout";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import NotFound from "./components/NotFound";
 import AboutUs from "./pages/AboutUs";
 import { ToastContainer } from "react-toastify";
-import { homePage, aboutUs, Products } from "./Routes/Routes";
+import {
+  homePage,
+  aboutUs,
+  contact,
+  category,
+  login,
+  siugnUp,
+} from "./Routes/Routes";
 import Category from "./pages/Category";
+import Contact from "./pages/Contact";
 import $ from "jquery";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
+  const routePath = useLocation();
+
+  const onTop = () => {
+    window.scrollTo(0, 0);
+  };
+  useEffect(() => {
+    onTop();
+  }, [routePath]);
+
   const loadJquery = () => {
-    // header
+    // filters
     (function () {
-      var header = $(".js-header"),
-        burger = header.find(".js-header-burger"),
-        menu = header.find(".js-menu"),
-        items = menu.find(".js-menu-item"),
-        close = menu.find(".js-menu-close"),
-        back = menu.find(".js-menu-back"),
-        html = $("html"),
-        body = $("body");
-      burger.on("click", function () {
-        burger.toggleClass("active");
-        menu.toggleClass("visible");
-        html.toggleClass("no-scroll");
-        body.toggleClass("no-scroll");
-      });
-      items.each(function () {
-        var item = $(this),
-          head = item.find(".js-menu-head");
-
-        head.on("click", function () {
-          if (!item.hasClass("active")) {
-            menu.removeClass("left");
-            items.removeClass("active");
-            menu.addClass("left");
-            item.addClass("active");
-          } else {
-            items.removeClass("active");
-            menu.removeClass("left");
-          }
-        });
-        back.on("click", function () {
-          menu.removeClass("left");
-          items.removeClass("active");
-        });
-        close.on("click", function () {
-          items.removeClass("active");
-          burger.toggleClass("active");
-          menu.toggleClass("visible");
-          menu.removeClass("left");
-          html.removeClass("no-scroll");
-          body.removeClass("no-scroll");
-        });
+      var filters = $(".js-filters"),
+        open = filters.find(".js-filters-open"),
+        wrap = filters.find(".js-filters-wrap");
+      open.on("click", function () {
+        open.toggleClass("active");
+        wrap.slideToggle();
       });
     })();
-
-    // search
-    (function () {
-      var search = $(".js-search"),
-        btn = search.find(".js-search-btn");
-      btn.on("click", function () {
-        search.toggleClass("show");
-      });
-    })();
-
-    
   };
 
   useEffect(() => {
@@ -79,9 +52,12 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Navigate replace to="/homePage" />} />
+          <Route path={login} element={<Login />} />
+          <Route path={siugnUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />
-          <Route path={Products} element={<Category />} />
+          <Route path={category} element={<Category />} />
+          <Route path={contact} element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

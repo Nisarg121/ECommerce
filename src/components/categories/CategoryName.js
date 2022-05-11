@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CategoryName = (props) => {
   return (
-    <Link className="menu__link" to={`/products/${props.categoryId}`}>
+    <Link className="menu__link" to={`/about`} onClick={() => props.onSelectCategory(false)} >
       {props.categoryName}
     </Link>
   );

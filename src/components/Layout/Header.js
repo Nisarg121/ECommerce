@@ -1,24 +1,69 @@
-import React, { useEffect } from "react";
-import $ from "jquery";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import CategoryName from "../categories/CategoryName";
+import { aboutUs, contact } from "../../Routes/Routes";
+import useHttp from "../../hooks/use-http";
+import { toast } from "react-toastify";
+import { getAllCategries } from "../../apis/Category";
+import { useDispatch } from "react-redux";
+import { categoryActions } from "../../store/Category";
 
-const Header = (props) => {
-  const categoryList = useSelector((state) => state.categoryList);
+const Header = () => {
+  const [toggleHeader, setToggleHeader] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const dispatch = useDispatch();
   
-  const categoryNames = categoryList.map((categorey) => (
+  let {
+    sendRequest,
+    status,
+    data: categoriesList,
+    error,
+  } = useHttp(getAllCategries, true);
+
+  useEffect(() => {
+    if (status === "completed") {
+      dispatch(categoryActions.addCategories(categoriesList));
+    }
+  }, [status]);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  if (error) {
+    return toast.error(error);
+  }
+
+  if (status === "pending") {
+    categoriesList = [];
+  }
+
+  const categoryNames = categoriesList.map((categorey) => (
     <CategoryName
       key={categorey._id}
       categoryId={categorey._id}
       categoryName={categorey.name}
+      onSelectCategory={() => {
+        setShowMenu(false);
+        setToggleHeader(false);
+      }}
     />
   ));
 
   return (
     <header className="header js-header">
       <div className="header__center center">
-        <button className="header__burger js-header-burger"></button>
+        <button
+          className={`header__burger js-header-burger ${
+            toggleHeader ? "active" : ""
+          }`}
+          onClick={() => {
+            setToggleHeader(!toggleHeader);
+            setShowMenu(false);
+            document.getElementById("scroll").classList.toggle("no-scroll");
+          }}
+        ></button>
         <Link className="header__logo" to="/HomePage">
           <img
             className="header__pic header__pic_black-desktop"
@@ -43,7 +88,12 @@ const Header = (props) => {
         </Link>
         <div className="header__control">
           <div className="header__item header__item_hidden">
-            <div className="header__search search js-search">
+            <div
+              className={`header__search search js-search  ${
+                showSearch ? "show" : ""
+              }`}
+              onClick={() => setShowSearch(!showSearch)}
+            >
               <div className="search__wrap">
                 <input
                   className="search__input"
@@ -51,7 +101,7 @@ const Header = (props) => {
                   placeholder="Eye care products for tired eyes"
                 />
               </div>
-              <button className="search__btn js-search-btn">
+              <button className={`search__btn js-search-btn`}>
                 <svg className="icon icon-search">
                   <use xlinkHref="img/sprite.svg#icon-search"></use>
                 </svg>
@@ -132,15 +182,19 @@ const Header = (props) => {
             </div>
           </div>
           <div className="header__item header__item_hidden">
-            <a className="header__link" href="login.html">
+            <Link className="header__link" to={'/login'}>
               <svg className="icon icon-user">
                 <use xlinkHref="img/sprite.svg#icon-user"></use>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
-      <div className="header__menu menu js-menu">
+      <div
+        className={`header__menu menu js-menu ${
+          toggleHeader ? "visible" : ""
+        } ${showMenu ? "left" : ""}`}
+      >
         <div className="menu__center center">
           <form className="menu__search search">
             <div className="search__wrap">
@@ -158,10 +212,19 @@ const Header = (props) => {
           </form>
           <div className="menu__container">
             <div className="menu__list js-menu-list">
-              <Link className="menu__item active" to="/HomePage">
+              <Link
+                className="menu__item active"
+                to="/HomePage"
+                onClick={() => setToggleHeader(false)}
+              >
                 Home
               </Link>
-              <div className="menu__item js-menu-item">
+              <div
+                className={`menu__item js-menu-item ${
+                  showMenu ? "active" : ""
+                }`}
+                onClick={() => setShowMenu(!showMenu)}
+              >
                 <div className="menu__head js-menu-head">
                   Categories
                   <svg className="icon icon-arrow-next">
@@ -182,14 +245,25 @@ const Header = (props) => {
                   <div className="menu__group">{categoryNames}</div>
                 </div>
               </div>
-              <Link className="menu__item" to="/aboutUs">
+              <Link
+                className="menu__item"
+                to={aboutUs}
+                onClick={() => setToggleHeader(false)}
+              >
                 About
+              </Link>
+              <Link
+                className="menu__item"
+                to={contact}
+                onClick={() => setToggleHeader(false)}
+              >
+                Contact
               </Link>
             </div>
           </div>
-          <a className="menu__btn btn btn_green btn_wide" href="login.html">
+          <Link className="menu__btn btn btn_green btn_wide" to={'/login'}>
             Login
-          </a>
+          </Link>
           <div className="menu__social">
             <a
               className="menu__link"

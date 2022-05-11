@@ -3,7 +3,10 @@ const DOMAIN = 'http://167.71.234.132:3000';
 //Main Routes
 export const homePage = 'homePage';
 export const aboutUs = 'aboutUs';
-export const Products = 'products';
+export const category = 'category';
+export const contact = 'contact';
+export const login = 'login';
+export const siugnUp = 'signUp';
 
 //api Routes
 

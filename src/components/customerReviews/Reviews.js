@@ -1,29 +1,24 @@
 import React from "react";
-import $ from "jquery";
+import Slider from "react-slick";
+import { PrevButton, NextButton } from "./Button";
 
 const Reviews = () => {
-//   var prevArrow =
-//       '<button type="button" className="slick-prev"><svg className="icon icon-arrow-prev"><use xlinkHref="img/sprite.svg#icon-arrow-prev"></use></svg></button>',
-//     nextArrow =
-//       '<button type="button" className="slick-next"><svg className="icon icon-arrow-next"><use xlinkHref="img/sprite.svg#icon-arrow-next"></use></svg></button>';
-//   // slider review
-//   $(".js-slider-review").slick({
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//     arrows: true,
-//     prevArrow: prevArrow,
-//     nextArrow: nextArrow,
-//     dots: true,
-//     speed: 600,
-//     responsive: [
-//       {
-//         breakpoint: 1024,
-//         settings: {
-//           adaptiveHeight: true,
-//         },
-//       },
-//     ],
-//   });
+  const setting = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <PrevButton />,
+    nextArrow: <NextButton />,
+    speed: 600,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          adaptiveHeight: true,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="review section">
@@ -36,10 +31,7 @@ const Reviews = () => {
             </h2>
           </div>
           <div className="review__wrap">
-            <div
-              className="review__slider js-slider-review"
-              //   onLoad={sliderHandler}
-            >
+            <Slider {...setting} className="review__slider js-slider-review">
               <div className="review__item">
                 <div className="review__ava">
                   <img className="review__pic" src="img/ava-1.jpg" alt="" />
@@ -70,7 +62,7 @@ const Reviews = () => {
                   highly recommend.
                 </div>
               </div>
-            </div>
+            </Slider>
           </div>
         </div>
       </div>

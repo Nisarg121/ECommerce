@@ -1,26 +1,18 @@
-import React, { useEffect } from "react";
-import { getAllCategries } from "../../apis/Category";
-import useHttp from "../../hooks/use-http";
+import React from "react";
 import CategoryItem from "./CategoryItem";
 import Slider from "react-slick";
-import { toast } from "react-toastify";
-import { categoryActions } from "../../store/Category";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { NextButton, PrevButton } from "../customerReviews/Button";
 
 const CategorieList = () => {
-  const dispatch = useDispatch();
-
-  const {
-    sendRequest,
-    status,
-    data: categoriesList,
-    error,
-  } = useHttp(getAllCategries, true);
+  const categoriesList = useSelector((state) => state.categoryList);
 
   const setting = {
     slidesToShow: 8,
     slidesToScroll: 1,
     arrows: true,
+    prevArrow: <PrevButton />,
+    nextArrow: <NextButton />,
     speed: 600,
     infinite: true,
     responsive: [
@@ -57,44 +49,23 @@ const CategorieList = () => {
     ],
   };
 
-  useEffect(() => {
-    if (status === "completed") {
-      dispatch(categoryActions.addCategories(categoriesList));
-    }
-  }, [status]);
-
-  useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
-
-  if (status === "pending") {
-    return (
-      <>
-        <div className="categories section">
-          <div className="categories__center center">
-            <div className="categories__stage stage">- The Categories</div>
-            <h2 className="categories__title title title_mb-lg">
-              Browse by Category
-            </h2>
-            <div class="loader centered"></div>
-          </div>
-        </div>
-      </>
+  const content =
+    categoriesList.length === 0 ? (
+      <div className="loader centered"></div>
+    ) : (
+      <div className="categories__container">
+        <Slider {...setting} className="categories__slider js-slider-categories">
+          {categoriesList.map((category) => (
+            <CategoryItem
+              key={category._id}
+              id={category._id}
+              name={category.name}
+              img={category.categoryIconImage}
+            />
+          ))}
+        </Slider>
+      </div>
     );
-  }
-
-  if (error) {
-    return toast.error(error);
-  }
-
-  const categoryList = categoriesList.map((category) => (
-    <CategoryItem
-      key={category._id}
-      id={category._id}
-      name={category.name}
-      img={category.categoryIconImage}
-    />
-  ));
 
   return (
     <div className="categories section">
@@ -103,11 +74,7 @@ const CategorieList = () => {
         <h2 className="categories__title title title_mb-lg">
           Browse by Category
         </h2>
-        <div className="categories__container">
-          <div>
-            <Slider {...setting}>{categoryList}</Slider>
-          </div>
-        </div>
+        {content}
       </div>
     </div>
   );

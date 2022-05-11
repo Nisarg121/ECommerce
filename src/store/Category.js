@@ -7,7 +7,7 @@ export const categorySlice = createSlice({
   },
   reducers: {
     addCategories: (state, { payload }) => {
-      state.categoryList = payload;
+      state.categoryList = payload || [];
     },
   },
 });
