@@ -13,15 +13,17 @@ const ListItem = (props) => {
   };
 
   return (
-    <li
-      className={`drop__link js-drop-link ${
-        props.filters.includes(props.dropItem) ? "active" : ""
-      }`}
-      onClick={filterWithActiveHanlder}
-      key={props.dropItem}
-    >
-      {props.dropItem}
-    </li>
+    <>
+      {props.filterItems.map((item) => (
+        <li
+          className={`drop__link js-drop-link`}
+          onClick={filterWithActiveHanlder}
+          key={item}
+        >
+          {item}
+        </li>
+      ))}
+    </>
   );
 };
 

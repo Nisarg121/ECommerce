@@ -16,27 +16,7 @@ const ProductFilters = () => {
       <div className="filters__sorting">
         <div className="filters__open js-filters-open">Filter By</div>
         <div className="filters__wrap js-filters-wrap">
-          <Filter
-            key="color"
-            filterTitle={"color"}
-            filterItems={["Red", "Blue", "Green", "Black"]}
-            setFilters={setFilters}
-            filters={filters}
-          />
-          <Filter
-            key="Category"
-            filterTitle={"Category"}
-            filterItems={["Treatments", "Moisturizers", "Featured"]}
-            setFilters={setFilters}
-            filters={filters}
-          />
-          <Filter
-            key="Sort By"
-            filterTitle={"Sort By"}
-            filterItems={["Low to High", "High to Low"]}
-            setFilters={setFilters}
-            filters={filters}
-          />
+          <Filter />
         </div>
       </div>
       {filters.length === 0 ? (
