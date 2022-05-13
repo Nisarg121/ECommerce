@@ -11,7 +11,7 @@ import {
   contact,
   category,
   login,
-  siugnUp,
+  signUp,
 } from "./Routes/Routes";
 import Category from "./pages/Category";
 import Contact from "./pages/Contact";
@@ -53,7 +53,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate replace to="/homePage" />} />
           <Route path={login} element={<Login />} />
-          <Route path={siugnUp} element={<SignUp />} />
+          <Route path={signUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />
           <Route path={category} element={<Category />} />

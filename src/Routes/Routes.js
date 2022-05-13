@@ -6,7 +6,7 @@ export const aboutUs = "aboutUs";
 export const category = "category";
 export const contact = "contact";
 export const login = "login";
-export const siugnUp = "signUp";
+export const signUp = "signUp";
 
 //api Routes
 
@@ -17,3 +17,4 @@ export const getBannerDetailsUrl = `${DOMAIN}/banner/bannerDetails`;
 //images path
 export const productImageUrl = `${DOMAIN}/uploads/product/original`;
 export const categoryImageUrl = `${DOMAIN}/uploads/categoryIcon/original`;
+export const signUpUrl = `${DOMAIN}/userAuth/signup`;

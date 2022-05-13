@@ -1279,8 +1279,10 @@ body.dark .search__input::placeholder {
 }
 
 .main__pic {
- max-width: 100%;
- max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-width: 768px;
+  max-height: 576px;
 }
 
 body.dark .main__preview {
