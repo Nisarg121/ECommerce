@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
+import { toast } from "react-toastify";
+import { getReviews } from "../../apis/cms";
+import useHttp from "../../hooks/use-http";
 import { PrevButton, NextButton } from "./Button";
 
 const Reviews = () => {
+  const { sendRequest, data: reviewData, status, error } = useHttp(getReviews);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
   const setting = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -20,6 +29,10 @@ const Reviews = () => {
     ],
   };
 
+  if (error) {
+    return toast.error(error);
+  }
+
   return (
     <div className="review section">
       <div className="review__center center">
@@ -30,40 +43,23 @@ const Reviews = () => {
               What our Customers are Saying
             </h2>
           </div>
-          <div className="review__wrap">
-            <Slider {...setting} className="review__slider js-slider-review">
-              <div className="review__item">
-                <div className="review__ava">
-                  <img className="review__pic" src="img/ava-1.jpg" alt="" />
-                </div>
-                <div className="review__author">Amy Smith</div>
-                <div className="review__text">
-                  This is the best website I have ordered something from. I
-                  highly recommend.
-                </div>
-              </div>
-              <div className="review__item">
-                <div className="review__ava">
-                  <img className="review__pic" src="img/ava-1.jpg" alt="" />
-                </div>
-                <div className="review__author">Amy Smith</div>
-                <div className="review__text">
-                  This is the best website I have ordered something from. I
-                  highly recommend. I highly recommend.
-                </div>
-              </div>
-              <div className="review__item">
-                <div className="review__ava">
-                  <img className="review__pic" src="img/ava-1.jpg" alt="" />
-                </div>
-                <div className="review__author">Amy Smith</div>
-                <div className="review__text">
-                  This is the best website I have ordered something from. I
-                  highly recommend.
-                </div>
-              </div>
-            </Slider>
-          </div>
+          {status === "completed" ? (
+            <div className="review__wrap">
+              <Slider {...setting} className="review__slider js-slider-review">
+                {reviewData.map((review) => (
+                  <div className="review__item">
+                    <div className="review__ava">
+                      <img className="review__pic" src="img/ava-1.jpg" alt="" />
+                    </div>
+                    <div className="review__author">{review.name}</div>
+                    <div className="review__text">{review.description}</div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          ) : (
+            <div className="loader centered"></div>
+          )}
         </div>
       </div>
     </div>

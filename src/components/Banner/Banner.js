@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getBanner } from "../../apis/Banner";
+import { getBanner } from "../../apis/cms";
 import useHttp from "../../hooks/use-http";
 import { productImageUrl } from "../../Routes/Routes";
 
@@ -34,6 +34,7 @@ const Banner = () => {
               <img
                 className="main__pic"
                 src={`${productImageUrl}/${bannerInfo.image}`}
+                alt=""
                 onError={(e) =>
                   (e.target.onerror = null)((e.target.src = "img/main-pic.png"))
                 }

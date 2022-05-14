@@ -1,11 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login } from "../../apis/User";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
-import { signUp } from "../../Routes/Routes";
+import { homePage, signUp } from "../../Routes/Routes";
+import { setToken } from "../../store/Auth";
 
 const LoginForm = () => {
-  // const {} = useHttp();
+  const {
+    sendRequest,
+    data: loginResponseData,
+    status,
+    error,
+  } = useHttp(login);
+
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
+
+  useEffect(() => {
+    if (status === "completed") {
+      if (error) {
+        toast.error(error);
+      } else {
+        localStorage.setItem("eComToken", loginResponseData.token);
+        dispatch(setToken(loginResponseData.token));
+        toast.success("Login Successfully.");
+        navigator(`/${homePage}`);
+      }
+    }
+  }, [sendRequest, status, error, loginResponseData, dispatch, navigator]);
+
   const {
     enteredValue: enteredEmail,
     isInputInvalid: isEmailInvalid,
@@ -23,8 +49,34 @@ const LoginForm = () => {
     inputBlurHandler: passBlurHandler,
   } = useInput((value) => value.trim().length >= 5);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (enteredEmail.trim() === "" || enteredPassword.trim() === "") {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    let errors = [];
+    if (isEmailInvalid) errors.push("email formate must be xx@xx.com");
+    if (isPasswordInvalid) errors.push("password lengh must be more than 5");
+
+    if (errors.length > 0) {
+      errors.forEach((error) => toast.error(error));
+      return;
+    }
+
+    const loginData = {
+      email: enteredEmail,
+      password: enteredPassword,
+    };
+    
+    sendRequest(loginData);
+    return;
+  };
+
   return (
-    <form className="login__form">
+    <form className="login__form" onSubmit={submitHandler}>
       <div className="login__field field">
         <div className="field__label">Email Address</div>
         <div className="field__wrap">
@@ -32,7 +84,7 @@ const LoginForm = () => {
             className="field__input"
             type="text"
             name="address"
-            style={isEmailInvalid ? { "border-color": "red" } : {}}
+            style={isEmailInvalid ? { borderColor: "red" } : {}}
             value={enteredEmail}
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler}
@@ -46,7 +98,7 @@ const LoginForm = () => {
             className="field__input"
             type="password"
             name="password"
-            style={isPasswordInvalid ? { "border-color": "red" } : {}}
+            style={isPasswordInvalid ? { borderColor: "red" } : {}}
             value={enteredPassword}
             onChange={passChangeHandler}
             onBlur={passBlurHandler}

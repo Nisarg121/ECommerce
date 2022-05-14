@@ -18,9 +18,12 @@ import Contact from "./pages/Contact";
 import $ from "jquery";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import { tokenLogin } from "./store/Auth";
+import { useDispatch } from "react-redux";
 
 function App() {
   const routePath = useLocation();
+  const dispatch = useDispatch();
 
   const onTop = () => {
     window.scrollTo(0, 0);
@@ -44,6 +47,7 @@ function App() {
 
   useEffect(() => {
     loadJquery();
+    dispatch(tokenLogin());
   });
 
   return (

@@ -13,8 +13,10 @@ export const signUp = "signUp";
 export const getAllCategriesUrl = `${DOMAIN}/category`;
 export const getAllProductsUrl = `${DOMAIN}/product`;
 export const getBannerDetailsUrl = `${DOMAIN}/banner/bannerDetails`;
+export const getReviewsUrl = `${DOMAIN}/review`;
 
 //images path
 export const productImageUrl = `${DOMAIN}/uploads/product/original`;
 export const categoryImageUrl = `${DOMAIN}/uploads/categoryIcon/original`;
 export const signUpUrl = `${DOMAIN}/userAuth/signup`;
+export const loginUrl = `${DOMAIN}/userAuth/login`;

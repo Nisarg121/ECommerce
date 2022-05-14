@@ -5,15 +5,17 @@ import { aboutUs, contact } from "../../Routes/Routes";
 import useHttp from "../../hooks/use-http";
 import { toast } from "react-toastify";
 import { getAllCategries } from "../../apis/Category";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { categoryActions } from "../../store/Category";
+import { clearToken } from "../../store/Auth";
 
 const Header = () => {
   const [toggleHeader, setToggleHeader] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const { isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  
+
   let {
     sendRequest,
     status,
@@ -22,14 +24,20 @@ const Header = () => {
   } = useHttp(getAllCategries, true);
 
   useEffect(() => {
-    if (status === "completed") {
+    if (status === "completed" && !error) {
       dispatch(categoryActions.addCategories(categoriesList));
     }
-  }, [status]);
+  }, [status, sendRequest]);
 
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
+
+  const logOutHandler = () => {
+    localStorage.clear();
+    dispatch(clearToken());
+    toast.success("LogOut Successfully.");
+  };
 
   if (error) {
     return toast.error(error);
@@ -182,11 +190,19 @@ const Header = () => {
             </div>
           </div>
           <div className="header__item header__item_hidden">
-            <Link className="header__link" to={'/login'}>
-              <svg className="icon icon-user">
-                <use xlinkHref="img/sprite.svg#icon-user"></use>
-              </svg>
-            </Link>
+            {isAuth ? (
+              <div className="header__link" onClick={logOutHandler}>
+                <svg className="icon icon-user">
+                  <use xlinkHref="img/sprite.svg#icon-signOut"></use>
+                </svg>
+              </div>
+            ) : (
+              <Link className="header__link" to={"/login"}>
+                <svg className="icon icon-user">
+                  <use xlinkHref="img/sprite.svg#icon-user"></use>
+                </svg>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -261,9 +277,26 @@ const Header = () => {
               </Link>
             </div>
           </div>
-          <Link className="menu__btn btn btn_green btn_wide" to={'/login'}>
-            Login
-          </Link>
+          {isAuth ? (
+            <Link
+              className="menu__btn btn btn_green btn_wide"
+              to={"#"}
+              onClick={() => {
+                setToggleHeader(false);
+                logOutHandler();
+              }}
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              className="menu__btn btn btn_green btn_wide"
+              to={"/login"}
+              onClick={() => setToggleHeader(false)}
+            >
+              Login
+            </Link>
+          )}
           <div className="menu__social">
             <a
               className="menu__link"

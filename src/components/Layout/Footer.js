@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const categoriesList = useSelector((state) => state.categoryList);
+  const categoriesList = useSelector((state) => state.categories.categoryList);
 
   const bgModeHandler = () => {
     const body = document.getElementsByTagName("BODY")[0];

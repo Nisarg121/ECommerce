@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { NextButton, PrevButton } from "../customerReviews/Button";
 
 const CategorieList = () => {
-  const categoriesList = useSelector((state) => state.categoryList);
+  const categoriesList = useSelector((state) => state.categories.categoryList);
 
   const setting = {
     slidesToShow: 8,
@@ -54,7 +54,10 @@ const CategorieList = () => {
       <div className="loader centered"></div>
     ) : (
       <div className="categories__container">
-        <Slider {...setting} className="categories__slider js-slider-categories">
+        <Slider
+          {...setting}
+          className="categories__slider js-slider-categories"
+        >
           {categoriesList.map((category) => (
             <CategoryItem
               key={category._id}
