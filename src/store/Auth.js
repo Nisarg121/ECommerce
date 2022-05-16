@@ -29,7 +29,7 @@ export const authSlice = createSlice({
     },
     clearToken: (state) => {
         return {
-            isAuth: true,
+            isAuth: false,
             token: ""
         }
     }

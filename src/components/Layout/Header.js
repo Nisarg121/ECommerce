@@ -15,7 +15,6 @@ const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const { isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
   let {
     sendRequest,
     status,
@@ -191,11 +190,11 @@ const Header = () => {
           </div>
           <div className="header__item header__item_hidden">
             {isAuth ? (
-              <div className="header__link" onClick={logOutHandler}>
+              <Link className="header__link" onClick={logOutHandler} to={"#"}>
                 <svg className="icon icon-user">
                   <use xlinkHref="img/sprite.svg#icon-signOut"></use>
                 </svg>
-              </div>
+              </Link>
             ) : (
               <Link className="header__link" to={"/login"}>
                 <svg className="icon icon-user">

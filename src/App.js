@@ -19,11 +19,12 @@ import $ from "jquery";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { tokenLogin } from "./store/Auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const routePath = useLocation();
   const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.auth);
 
   const onTop = () => {
     window.scrollTo(0, 0);
@@ -48,7 +49,7 @@ function App() {
   useEffect(() => {
     loadJquery();
     dispatch(tokenLogin());
-  });
+  }, []);
 
   return (
     <>
@@ -56,7 +57,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Navigate replace to="/homePage" />} />
-          <Route path={login} element={<Login />} />
+          <Route
+            path={login}
+            element={isAuth ? <Navigate replace to={"/HomePage"} /> : <Login />}
+          />
           <Route path={signUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />

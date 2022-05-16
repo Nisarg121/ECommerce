@@ -40,7 +40,7 @@ const Reviews = () => {
           <div className="review__box">
             <div className="review__stage stage">- Our Reviews</div>
             <h2 className="review__title title">
-              What our Customers are Saying
+              What our Customers are Saying....
             </h2>
           </div>
           {status === "completed" ? (
