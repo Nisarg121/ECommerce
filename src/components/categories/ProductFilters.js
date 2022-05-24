@@ -4,7 +4,7 @@ import Filter from "./Filter";
 const ProductFilters = () => {
   const [colorFilter, setColorFilter] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState([]);
-  const [priceFilter, setPriceFilter] = useState([]);
+  const [priceFilter, setPriceFilter] = useState(null);
 
   const removeColorFilter = (color) => {
     setColorFilter((prevState) => {
@@ -12,15 +12,9 @@ const ProductFilters = () => {
     });
   };
 
-  const removeCategoryFilter = (category) => {
+  const removeCategoryFilter = (categoryId) => {
     setCategoryFilter((prevState) => {
-      return prevState.filter((item) => item !== category);
-    });
-  };
-
-  const removePriceFilter = (price) => {
-    setPriceFilter((prevState) => {
-      return prevState.filter((item) => item !== price);
+      return prevState.filter((item) => item.categoryId !== categoryId);
     });
   };
 
@@ -62,30 +56,28 @@ const ProductFilters = () => {
           <>
             {categoryFilter.map((category) => (
               <div
-                key={category}
+                key={category.categoryIid}
                 className="filters__tag"
-                onClick={() => removeCategoryFilter(category)}
+                onClick={() => removeCategoryFilter(category.categoryId)}
               >
-                {category}
+                {category.categoryName}
                 <button className="filters__remove"></button>
               </div>
             ))}
           </>
         )}
-        {priceFilter.length === 0 ? (
-          ""
-        ) : (
+        {priceFilter && (
           <>
-            {priceFilter.map((price) => (
+            {
               <div
-                key={price}
                 className="filters__tag"
-                onClick={() => removePriceFilter(price)}
+                onClick={() => setPriceFilter(null)}
               >
-                {price}
+                {priceFilter === "asce" && "low to high"}
+                {priceFilter === "desc" && "high to low"}
                 <button className="filters__remove"></button>
               </div>
-            ))}
+            }
           </>
         )}
       </div>

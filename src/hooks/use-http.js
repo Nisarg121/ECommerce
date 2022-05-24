@@ -40,12 +40,15 @@ function useHttp(requestFunction, startWithPending = false) {
       dispatch({ type: "SEND" });
       try {
         const responseData = await requestFunction(requestData);
+        // console.log(responseData);
         dispatch({ type: "SUCCESS", responseData });
+        return
       } catch (error) {
         dispatch({
           type: "ERROR",
           errorMessage: error.message || "Something went wrong!",
         });
+        return;
       }
     },
     [requestFunction]

@@ -8,6 +8,7 @@ import { getAllCategries } from "../../apis/Category";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryActions } from "../../store/Category";
 import { clearToken } from "../../store/Auth";
+import CartHeader from "../cart/CartHeader";
 
 const Header = () => {
   const [toggleHeader, setToggleHeader] = useState(false);
@@ -26,7 +27,7 @@ const Header = () => {
     if (status === "completed" && !error) {
       dispatch(categoryActions.addCategories(categoriesList));
     }
-  }, [status, sendRequest]);
+  }, [status, sendRequest, categoriesList, error, dispatch]);
 
   useEffect(() => {
     sendRequest();
@@ -115,79 +116,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-          <div className="header__item">
-            <a
-              className="header__link header__link_cart active"
-              href="cart.html"
-            >
-              <svg className="icon icon-cart">
-                <use xlinkHref="img/sprite.svg#icon-cart"></use>
-              </svg>
-            </a>
-            <div className="header__body">
-              <div className="basket basket_header">
-                <div className="basket__list">
-                  <div className="basket__item">
-                    <a className="basket__preview" href="#">
-                      <img
-                        className="basket__pic"
-                        src="img/products/product-pic-4.png"
-                        alt=""
-                      />
-                    </a>
-                    <div className="basket__details">
-                      <a className="basket__product" href="#">
-                        Eye Mask Gel
-                      </a>
-                      <div className="basket__price">
-                        <div className="basket__old">$127</div>
-                        <div className="basket__actual">$180</div>
-                      </div>
-                    </div>
-                    <button className="basket__remove">
-                      <svg className="icon icon-close">
-                        <use xlinkHref="img/sprite.svg#icon-close"></use>
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="basket__item">
-                    <a className="basket__preview" href="#">
-                      <img
-                        className="basket__pic"
-                        src="img/products/product-pic-6.png"
-                        alt=""
-                      />
-                    </a>
-                    <div className="basket__details">
-                      <a className="basket__product" href="#">
-                        Day Eye Cream
-                      </a>
-                      <div className="basket__price">
-                        <div className="basket__actual">$97</div>
-                      </div>
-                    </div>
-                    <button className="basket__remove">
-                      <svg className="icon icon-close">
-                        <use xlinkHref="img/sprite.svg#icon-close"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div className="basket__total">
-                  <div className="basket__text">Total:</div>
-                  <div className="basket__text">$201</div>
-                </div>
-                <div className="basket__btns">
-                  <a className="basket__btn btn btn_green" href="checkout.html">
-                    Checkout{" "}
-                  </a>
-                  <a className="basket__btn btn btn_border" href="cart.html">
-                    Edit Cart
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CartHeader />
           <div className="header__item header__item_hidden">
             {isAuth ? (
               <Link className="header__link" onClick={logOutHandler} to={"#"}>
@@ -297,33 +226,33 @@ const Header = () => {
             </Link>
           )}
           <div className="menu__social">
-            <a
+            <Link
               className="menu__link"
-              href="https://www.instagram.com/ui8net/"
+              to={"https://www.instagram.com/ui8net/"}
               target="_blank"
             >
               <svg className="icon icon-instagram">
                 <use xlinkHref="img/sprite.svg#icon-instagram"></use>
               </svg>
-            </a>
-            <a
+            </Link>
+            <Link
               className="menu__link"
-              href="https://twitter.com/ui8"
+              to={"https://twitter.com/ui8"}
               target="_blank"
             >
               <svg className="icon icon-twitter">
                 <use xlinkHref="img/sprite.svg#icon-twitter"></use>
               </svg>
-            </a>
-            <a
+            </Link>
+            <Link
               className="menu__link"
-              href="https://www.facebook.com/ui8.net/"
+              to={"https://www.facebook.com/ui8.net/"}
               target="_blank"
             >
               <svg className="icon icon-facebook">
                 <use xlinkHref="img/sprite.svg#icon-facebook"></use>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

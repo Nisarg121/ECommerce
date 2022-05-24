@@ -35,7 +35,7 @@ const ProductList = () => {
   if (error) {
     return toast.error(error);
   }
-  
+
   return (
     <div className="products products_main section">
       <div className="products__center center">

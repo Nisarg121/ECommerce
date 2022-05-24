@@ -4,46 +4,62 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: [],
-    quantity: 0,
-    amount: 0,
+    total: 0,
   },
   reducers: {
-    addToCart: (state, { payload }) => {
-      const found = state.items.find((item) => item.id === payload.id);
-      if (found) {
-        state.items = state.items.map((item) => {
-          if (item.id === payload.id) {
-            item.quantity++;
-            state.quantity++;
-            state.amount += item.price;
-            return item;
+    addToCart: (state, { payload: productInfo }) => {
+      const product = state.items.find(
+        (product) => product.productId === productInfo.productId
+      );
+      if (product) {
+        state.items = state.items.map((product) => {
+          if (product.productId === productInfo.productId) {
+            product.quantity++;
+            state.total += product.price;
+            return product;
           }
-          return item;
+          return product;
         });
       } else {
-        state.items.push(payload);
-        state.quantity++;
-        state.amount += payload.price;
+        state.items.push({ ...productInfo, quantity: 1 });
+        state.total += productInfo.price;
+        return state;
       }
     },
-    removeFromCart: (state, { payload }) => {
-      const remainItems = [];
-      state.items.forEach((item) => {
-        if (item.id === payload) {
-          item.quantity--;
-          state.quantity--;
-          state.amount -= item.price;
-          if (item.quantity === 0) {
-            return;
-          }
-          remainItems.push(item);
-          return;
-        }
-        remainItems.push(item);
-      }); 
-      state.items = remainItems;
+
+    removeFromCart: (state, { payload: productId }) => {
+      const product = state.items.find(
+        (product) => product.productId === productId
+      );
+      state.items = state.items.filter(
+        (product) => product.productId !== productId
+      );
+      state.total -= product.quantity * product.price;
+      return state;
+    },
+    
+    initializeCart: (state, { payload }) => {
+      let items = [];
+      let total = 0;
+
+      items = payload.map((item) => {
+        total = total + item.productId.price * item.quantity;
+
+        return {
+          productId: item.productId._id,
+          name: item.productId.name,
+          price: item.productId.price,
+          productImage: item.productId.productImage,
+          quantity: item.quantity,
+        };
+      });
+
+      return {
+        items: items,
+        total: total,
+      };
     },
   },
 });
 
-export const cartActions = cartSlice.actions;
+export const { addToCart, removeFromCart, initializeCart } = cartSlice.actions;

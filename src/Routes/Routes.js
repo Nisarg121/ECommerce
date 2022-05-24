@@ -14,6 +14,8 @@ export const getAllCategriesUrl = `${DOMAIN}/category`;
 export const getAllProductsUrl = `${DOMAIN}/product`;
 export const getBannerDetailsUrl = `${DOMAIN}/banner/bannerDetails`;
 export const getReviewsUrl = `${DOMAIN}/review`;
+export const getCartUrl = `${DOMAIN}/cart/getAllCartItems`;
+export const manageCartUrl = `${DOMAIN}/cart/manageCart`;
 
 //images path
 export const productImageUrl = `${DOMAIN}/uploads/product/original`;

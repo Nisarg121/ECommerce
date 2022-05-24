@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CategoryTitle from "./CategoryTitle";
 import ProductFilters from "./ProductFilters";
 
 const AllCategoriesProducts = () => {
+  useEffect(() => {});
+
   return (
     <div className="products products_full section">
       <div className="products__center center">

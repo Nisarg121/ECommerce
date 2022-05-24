@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Filter = (props) => {
+  const { categoryList } = useSelector((state) => state.categories);
   const [showDrop, setShowDrop] = useState([false, false, false]);
+
   const colors = ["Red", "Blue", "Green", "Black"];
-  const Categories = ["Treatments", "Moisturizers", "Featured"];
-  const prices = ["$0 - $10", "$10 - $50", "$50 +"];
+  const categories = categoryList.map((category) => {
+    return {
+      categoryId: category._id,
+      categoryName: category.name,
+    };
+  });
 
   const colorFilterHandler = (color) => {
     props.setColorFilter((prevState) => {
@@ -15,12 +22,18 @@ const Filter = (props) => {
     });
   };
 
-  const categoryFilterHandler = (Category) => {
+  const categoryFilterHandler = (categoryInfo) => {
     props.setcategoryFilter((prevState) => {
-      if (props.categoryFilter.includes(Category)) {
-        return prevState.filter((item) => item !== Category);
+      const foundCategory = props.categoryFilter.find(
+        (category) => category.categoryId === categoryInfo.categoryId
+      );
+      if (foundCategory) {
+        return prevState.filter(
+          (category) => category.categoryId !== categoryInfo.categoryId
+        );
       }
-      return [...prevState, Category];
+
+      return [...prevState, categoryInfo];
     });
   };
 
@@ -68,15 +81,19 @@ const Filter = (props) => {
           Category
         </div>
         <div className="drop__body js-drop-body">
-          {Categories.map((Category) => (
+          {categories.map((category) => (
             <li
               className={`drop__link js-drop-link ${
-                props.categoryFilter.includes(Category) ? "active" : ""
+                props.categoryFilter.find(
+                  (item) => item.categoryId === category.categoryId
+                )
+                  ? "active"
+                  : ""
               }`}
-              key={Category}
-              onClick={() => categoryFilterHandler(Category)}
+              key={category.categoryId}
+              onClick={() => categoryFilterHandler(category)}
             >
-              {Category}
+              {category.categoryName}
             </li>
           ))}
         </div>
@@ -91,17 +108,26 @@ const Filter = (props) => {
           Price Range
         </div>
         <div className="drop__body js-drop-body">
-          {prices.map((Price) => (
-            <li
-              className={`drop__link js-drop-link ${
-                props.priceFilter.includes(Price) ? "active" : ""
-              }`}
-              key={Price}
-              onClick={() => priceFilterHandler(Price)}
-            >
-              {Price}
-            </li>
-          ))}
+          <li
+            className={`drop__link js-drop-link ${
+              props.priceFilter === "asce" ? "active" : ""
+            }`}
+            onClick={() =>
+              props.setPriceFilter(props.priceFilter === "asce" ? null : "asce")
+            }
+          >
+            low to high
+          </li>
+          <li
+            className={`drop__link js-drop-link ${
+              props.priceFilter === "desc" ? "active" : ""
+            }`}
+            onClick={() =>
+              props.setPriceFilter(props.priceFilter === "desc" ? null : "desc")
+            }
+          >
+            high to low
+          </li>
         </div>
       </div>
     </>
