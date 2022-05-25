@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
       state.total -= product.quantity * product.price;
       return state;
     },
-    
+
     initializeCart: (state, { payload }) => {
       let items = [];
       let total = 0;
@@ -59,7 +59,15 @@ export const cartSlice = createSlice({
         total: total,
       };
     },
+
+    clearCart: (state) => {
+      return {
+        items: [],
+        total: 0,
+      };
+    },
   },
 });
 
-export const { addToCart, removeFromCart, initializeCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, initializeCart, clearCart } =
+  cartSlice.actions;

@@ -12,6 +12,7 @@ import {
   category,
   login,
   signUp,
+  cart,
 } from "./Routes/Routes";
 import Category from "./pages/Category";
 import Contact from "./pages/Contact";
@@ -20,11 +21,13 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { tokenLogin } from "./store/Auth";
 import { useDispatch, useSelector } from "react-redux";
+import Cart from "./pages/Cart";
 
 function App() {
   const routePath = useLocation();
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.auth);
+  console.log(isAuth);
 
   const onTop = () => {
     window.scrollTo(0, 0);
@@ -49,18 +52,21 @@ function App() {
   useEffect(() => {
     loadJquery();
     dispatch(tokenLogin());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       <ToastContainer />
       <Layout>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/homePage" />} />
+          <Route path="/" element={<Navigate replace to={homePage} />} />
           <Route
             path={login}
-            element={isAuth ? <Navigate replace to={"/HomePage"} /> : <Login />}
+            element={
+              isAuth ? <Navigate replace to={`/${homePage}`} /> : <Login />
+            }
           />
+          <Route path={cart} element={isAuth ? <Cart /> : <Navigate replace to={`/${login}`} />} />
           <Route path={signUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />

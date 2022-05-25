@@ -1,16 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
-import { productImageUrl } from "../../Routes/Routes";
+import { cart, login, productImageUrl } from "../../Routes/Routes";
 import { addToCart } from "../../store/cart";
 
 const ProductItem = (props) => {
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
+  const { isAuth } = useSelector((state) => state.auth);
 
   const addToCartHandler = async (productInfo) => {
     try {
+      if (!isAuth) {
+        return Navigate(`/${login}`);
+      }
       await manageCart({
         productId: productInfo.productId,
         cartOperation: "inc",
@@ -18,6 +23,7 @@ const ProductItem = (props) => {
 
       dispatch(addToCart(productInfo));
       toast.success("product added to the Cart.");
+      Navigate(`/${cart}`);
     } catch (error) {
       toast.error(error.message);
     }

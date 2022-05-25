@@ -8,6 +8,7 @@ import CartPopulate from "./CartPopulate";
 
 const CartHeader = () => {
   const cart = useSelector((state) => state.cart);
+  const { isAuth } = useSelector((state) => state.auth);
   const { sendRequest, status, data: cartData, error } = useHttp(getCart, true);
   const dispatch = useDispatch();
 
@@ -18,8 +19,10 @@ const CartHeader = () => {
   }, [status, error, cartData, dispatch]);
 
   useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
+    if (isAuth) {
+      sendRequest();
+    }
+  }, [sendRequest, isAuth]);
 
   if (error) {
     return toast.error(error);

@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+const colors = [
+  "Skin",
+  "Brown",
+  "Green",
+  "Yellow",
+  "Transparent",
+  "Pink",
+  "Blue",
+];
 
 const Filter = (props) => {
   const { categoryList } = useSelector((state) => state.categories);
   const [showDrop, setShowDrop] = useState([false, false, false]);
 
-  const colors = ["Red", "Blue", "Green", "Black"];
   const categories = categoryList.map((category) => {
     return {
       categoryId: category._id,
@@ -34,15 +42,6 @@ const Filter = (props) => {
       }
 
       return [...prevState, categoryInfo];
-    });
-  };
-
-  const priceFilterHandler = (Price) => {
-    props.setPriceFilter((prevState) => {
-      if (props.priceFilter.includes(Price)) {
-        return prevState.filter((item) => item !== Price);
-      }
-      return [...prevState, Price];
     });
   };
 

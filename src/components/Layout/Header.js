@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { categoryActions } from "../../store/Category";
 import { clearToken } from "../../store/Auth";
 import CartHeader from "../cart/CartHeader";
+import { clearCart } from "../../store/cart";
 
 const Header = () => {
   const [toggleHeader, setToggleHeader] = useState(false);
@@ -36,6 +37,7 @@ const Header = () => {
   const logOutHandler = () => {
     localStorage.clear();
     dispatch(clearToken());
+    dispatch(clearCart());
     toast.success("LogOut Successfully.");
   };
 

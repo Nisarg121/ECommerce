@@ -29,7 +29,7 @@ export const manageCart = async (productBody) => {
     },
     body: JSON.stringify(productBody),
   });
-  
+
   const data = await response.json();
 
   if (!response.ok) {

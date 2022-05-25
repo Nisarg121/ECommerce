@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
 import { productImageUrl } from "../../Routes/Routes";
@@ -67,9 +68,9 @@ const CartPopulate = (props) => {
         <a className="basket__btn btn btn_green" href="checkout.html">
           Checkout{" "}
         </a>
-        <a className="basket__btn btn btn_border" href="cart.html">
+        <Link className="basket__btn btn btn_border" to={'cart'}>
           Edit Cart
-        </a>
+        </Link>
       </div>
     </>
   );

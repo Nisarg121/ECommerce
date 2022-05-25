@@ -1,4 +1,5 @@
 const DOMAIN = "http://167.71.234.132:3000";
+// const DOMAIN = "http://localhost:3000";
 
 //Main Routes
 export const homePage = "homePage";
@@ -7,6 +8,7 @@ export const category = "category";
 export const contact = "contact";
 export const login = "login";
 export const signUp = "signUp";
+export const cart = "cart";
 
 //api Routes
 
@@ -16,6 +18,7 @@ export const getBannerDetailsUrl = `${DOMAIN}/banner/bannerDetails`;
 export const getReviewsUrl = `${DOMAIN}/review`;
 export const getCartUrl = `${DOMAIN}/cart/getAllCartItems`;
 export const manageCartUrl = `${DOMAIN}/cart/manageCart`;
+export const getFilteredProductsUrl = `${DOMAIN}/product/byCategory`;
 
 //images path
 export const productImageUrl = `${DOMAIN}/uploads/product/original`;
