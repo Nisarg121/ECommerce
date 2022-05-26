@@ -68,7 +68,7 @@ const CartPopulate = (props) => {
         <a className="basket__btn btn btn_green" href="checkout.html">
           Checkout{" "}
         </a>
-        <Link className="basket__btn btn btn_border" to={'cart'}>
+        <Link className="basket__btn btn btn_border" to={"cart"}>
           Edit Cart
         </Link>
       </div>

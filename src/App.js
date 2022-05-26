@@ -22,13 +22,12 @@ import SignUp from "./pages/SignUp";
 import { tokenLogin } from "./store/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import Cart from "./pages/Cart";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   const routePath = useLocation();
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.auth);
-  console.log(isAuth);
-
   const onTop = () => {
     window.scrollTo(0, 0);
   };
@@ -46,6 +45,38 @@ function App() {
         open.toggleClass("active");
         wrap.slideToggle();
       });
+    })();
+
+    (function () {
+      $(".js-zoom").ezPlus({
+        gallery: "gallery",
+        galleryActiveClass: "active",
+        zoomWindowWidth: 504,
+        zoomWindowHeight: 504,
+        zoomWindowOffsetX: 50,
+        borderSize: "5",
+        borderColour: "#F6F7FB",
+        responsive: true,
+        respond: [
+          {
+            range: "768-1365",
+            zoomType: "inner",
+            cursor: "crosshair",
+            borderSize: "0",
+          },
+          {
+            range: "320-767",
+            enabled: false,
+            showLens: false,
+          },
+        ],
+      });
+
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        $(".card__preview").on("click", function (e) {
+          e.preventDefault();
+        });
+      }
     })();
   };
 
@@ -66,12 +97,16 @@ function App() {
               isAuth ? <Navigate replace to={`/${homePage}`} /> : <Login />
             }
           />
-          <Route path={cart} element={isAuth ? <Cart /> : <Navigate replace to={`/${login}`} />} />
+          <Route
+            path={cart}
+            element={isAuth ? <Cart /> : <Navigate replace to={`/${login}`} />}
+          />
           <Route path={signUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />
           <Route path={category} element={<Category />} />
           <Route path={contact} element={<Contact />} />
+          <Route path={"product"} element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

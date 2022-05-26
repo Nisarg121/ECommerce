@@ -1,5 +1,5 @@
-const DOMAIN = "http://167.71.234.132:3000";
-// const DOMAIN = "http://localhost:3000";
+// const DOMAIN = "http://167.71.234.132:3000";
+const DOMAIN = "http://localhost:3000";
 
 //Main Routes
 export const homePage = "homePage";

@@ -66,8 +66,42 @@ export const cartSlice = createSlice({
         total: 0,
       };
     },
+
+    incQuantity: (state, { payload: productId }) => {
+      const index = state.items.findIndex(
+        (product) => product.productId === productId
+      );
+
+      state.items[index].quantity++;
+      state.total += state.items[index].price;
+
+      return state;
+    },
+
+    decQuantity: (state, { payload: productId }) => {
+      const index = state.items.findIndex(
+        (product) => product.productId === productId
+      );
+
+      const quantity = --state.items[index].quantity;
+      state.total -= state.items[index].price;
+
+      if (quantity === 0) {
+        state.items = state.items.filter(
+          (product) => product.productId !== productId
+        );
+      }
+
+      return state;
+    },
   },
 });
 
-export const { addToCart, removeFromCart, initializeCart, clearCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  initializeCart,
+  clearCart,
+  incQuantity,
+  decQuantity,
+} = cartSlice.actions;

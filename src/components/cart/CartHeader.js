@@ -28,7 +28,7 @@ const CartHeader = () => {
     return toast.error(error);
   }
 
-  if (status === "pending") {
+  if (status === "pending" && isAuth === true) {
     return (
       <div className="header__item">
         <a className="header__link header__link_cart active" href="cart.html">
