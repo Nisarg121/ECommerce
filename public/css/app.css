@@ -618,6 +618,7 @@ select {
   font-weight: 600;
   font-style: italic;
   color: #2975FF;
+  max-width: 500px;
 }
 
 .slick-arrow {
@@ -1283,6 +1284,7 @@ body.dark .search__input::placeholder {
   height: auto;
   max-width: 768px;
   max-height: 576px;
+  padding-bottom: 2%;
 }
 
 body.dark .main__preview {
@@ -5871,6 +5873,7 @@ body.dark .work__item {
   .title {
     font-size: 32px;
     line-height: 1.5;
+    max-width: 500px;
   }
 
   .title_mb-md {
@@ -7072,5 +7075,6 @@ body.dark .work__item {
     margin: 0;
   }
 }
+
 
 /*# sourceMappingURL=app.css.map */

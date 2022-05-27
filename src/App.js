@@ -47,37 +47,37 @@ function App() {
       });
     })();
 
-    (function () {
-      $(".js-zoom").ezPlus({
-        gallery: "gallery",
-        galleryActiveClass: "active",
-        zoomWindowWidth: 504,
-        zoomWindowHeight: 504,
-        zoomWindowOffsetX: 50,
-        borderSize: "5",
-        borderColour: "#F6F7FB",
-        responsive: true,
-        respond: [
-          {
-            range: "768-1365",
-            zoomType: "inner",
-            cursor: "crosshair",
-            borderSize: "0",
-          },
-          {
-            range: "320-767",
-            enabled: false,
-            showLens: false,
-          },
-        ],
-      });
+    // (function () {
+    //   $(".js-zoom").ezPlus({
+    //     gallery: "gallery",
+    //     galleryActiveClass: "active",
+    //     zoomWindowWidth: 504,
+    //     zoomWindowHeight: 504,
+    //     zoomWindowOffsetX: 50,
+    //     borderSize: "5",
+    //     borderColour: "#F6F7FB",
+    //     responsive: true,
+    //     respond: [
+    //       {
+    //         range: "768-1365",
+    //         zoomType: "inner",
+    //         cursor: "crosshair",
+    //         borderSize: "0",
+    //       },
+    //       {
+    //         range: "320-767",
+    //         enabled: false,
+    //         showLens: false,
+    //       },
+    //     ],
+    //   });
 
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        $(".card__preview").on("click", function (e) {
-          e.preventDefault();
-        });
-      }
-    })();
+    //   if (window.matchMedia("(max-width: 767px)").matches) {
+    //     $(".card__preview").on("click", function (e) {
+    //       e.preventDefault();
+    //     });
+    //   }
+    // })();
   };
 
   useEffect(() => {

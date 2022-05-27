@@ -26,7 +26,7 @@ const Cart = () => {
           </div>
         )}
         {items.length === 0 && (
-          <div classNameName="centered checkout__container">
+          <div className="centered checkout__container">
             <div className="checkout__item js-checkout-item">
               <div className="checkout__category">Your Cart Is Empty</div>
               <Link to={`/${category}`}>
