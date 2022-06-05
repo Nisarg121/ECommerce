@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { checkout } from "../../Routes/Routes";
 
 const CartTotal = () => {
   const { total } = useSelector((state) => state.cart);
@@ -14,23 +16,17 @@ const CartTotal = () => {
             <div className="cart__text">${total.toFixed(2)}</div>
           </div>
           <div className="cart__line">
-            <div className="cart__text">Tax:</div>
-            <div className="cart__text">${Number(total * 0.12).toFixed(2)}</div>
-          </div>
-          <div className="cart__line">
             <div className="cart__text">Shipping:</div>
             <div className="cart__text">$15</div>
           </div>
           <div className="cart__line cart__line_total">
             <div className="cart__text">Total:</div>
-            <div className="cart__text">
-              ${Number(total + total * 0.12 + 15).toFixed(2)}
-            </div>
+            <div className="cart__text">${Number(total + 15).toFixed(2)}</div>
           </div>
         </div>
-        <a className="cart__btn btn btn_green btn_wide" href="checkout.html">
+        <Link className="cart__btn btn btn_green btn_wide" to={`/${checkout}`}>
           Checkout
-        </a>
+        </Link>
       </div>
     </div>
   );

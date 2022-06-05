@@ -257,7 +257,13 @@ button {
 .icon-user {
   width: 0.95em;
   height: 1em;
-  fill: #000;
+  fill: rgb(0, 0, 0);
+}
+
+.icon-signOut {
+  width: 0.95em;
+  height: 1em;
+  fill: rgb(0, 0, 0);
 }
 
 /* Slider */
@@ -1788,6 +1794,15 @@ body.dark .about__icon path {
 }
 
 .review__author {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.66667;
+}
+
+.review__author_skeleton {
+  width: 100%;
+  height: 100%;
   margin-bottom: 16px;
   font-size: 24px;
   font-weight: 600;
@@ -4074,9 +4089,9 @@ body.dark .checkbox__input:checked+.checkbox__in .checkbox__tick {
   left: 0;
   right: 0;
   z-index: -2;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-60%);
+  -ms-transform: translateY(-60%);
+  transform: translateY(-60%);
   height: 2px;
   background: #F6F7FB;
 }
@@ -4127,7 +4142,7 @@ body.dark .checkbox__input:checked+.checkbox__in .checkbox__tick {
 }
 
 .checkout__step.active:before {
-  width: 33.33%;
+  width: 50%;
 }
 
 .checkout__step:first-child:before {
@@ -4135,7 +4150,7 @@ body.dark .checkbox__input:checked+.checkbox__in .checkbox__tick {
 }
 
 .checkout__step:nth-child(2):before {
-  left: 33.33%;
+  left: 50%;
 }
 
 .checkout__step:nth-child(3):before {
@@ -7076,5 +7091,77 @@ body.dark .work__item {
   }
 }
 
+.display {
+  display: block;
+}
+
+.no_display {
+  display: none;
+}
+
+.address_container {
+  /* display: flex; */
+  padding: 54px 56px;
+  border-radius: 48px;
+  border: 2px solid #F6F7FB;
+  margin-bottom: 48px
+}
+
+.address_container:hover {
+  border-color: #00CC96;
+}
+
+.address_container.active {
+  border-color: #00CC96;
+}
+
+.address_preview {
+  display: block;
+}
+
+.address_remove {
+  align-items: baseline;
+}
+
+.disabled {
+  background-color: #999;
+  color: white;
+}
+
+.cancel_btn {
+  background: #ffffff;
+  color: #00CC96;
+  border: 2px solid #00CC96;
+}
+
+.scroll {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  outline: none;
+  background-color: #00CC96;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.scroll:hover {
+  background-color: #555;
+}
+
+.category_link {
+  width: 100%;
+  line-height: 1.5;
+  color: #1A202C;
+  -webkit-transition: color .25s;
+  -o-transition: color .25s;
+  transition: color .25s;
+}
 
 /*# sourceMappingURL=app.css.map */

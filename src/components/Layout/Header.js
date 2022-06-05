@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryName from "../categories/CategoryName";
-import { aboutUs, contact } from "../../Routes/Routes";
+import { aboutUs, contact, homePage } from "../../Routes/Routes";
 import useHttp from "../../hooks/use-http";
 import { toast } from "react-toastify";
 import { getAllCategries } from "../../apis/Category";
@@ -11,7 +11,8 @@ import { clearToken } from "../../store/Auth";
 import CartHeader from "../cart/CartHeader";
 import { clearCart } from "../../store/cart";
 
-const Header = () => {
+const Header = (props) => {
+  console.log(props.isDark);
   const [toggleHeader, setToggleHeader] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -74,27 +75,12 @@ const Header = () => {
             document.getElementById("scroll").classList.toggle("no-scroll");
           }}
         ></button>
-        <Link className="header__logo" to="/HomePage">
-          <img
-            className="header__pic header__pic_black-desktop"
-            src="img/logo.svg"
-            alt=""
-          />
-          <img
-            className="header__pic header__pic_white-desktop"
-            src="img/logo-white.svg"
-            alt=""
-          />
-          <img
-            className="header__pic header__pic_black-mobile"
-            src="img/logo-mobile.svg"
-            alt=""
-          />
-          <img
-            className="header__pic header__pic_white-mobile"
-            src="img/logo-mobile-white.svg"
-            alt=""
-          />
+        <Link className="header__logo" to={`/${homePage}`}>
+          {props.isDark ? (
+            <img className="header__pic " src="img/Allure-dark.svg" alt="" />
+          ) : (
+            <img className="header__pic" src="img/Allure-white.svg" alt="" />
+          )}
         </Link>
         <div className="header__control">
           <div className="header__item header__item_hidden">
@@ -227,35 +213,6 @@ const Header = () => {
               Login
             </Link>
           )}
-          <div className="menu__social">
-            <Link
-              className="menu__link"
-              to={"https://www.instagram.com/ui8net/"}
-              target="_blank"
-            >
-              <svg className="icon icon-instagram">
-                <use xlinkHref="img/sprite.svg#icon-instagram"></use>
-              </svg>
-            </Link>
-            <Link
-              className="menu__link"
-              to={"https://twitter.com/ui8"}
-              target="_blank"
-            >
-              <svg className="icon icon-twitter">
-                <use xlinkHref="img/sprite.svg#icon-twitter"></use>
-              </svg>
-            </Link>
-            <Link
-              className="menu__link"
-              to={"https://www.facebook.com/ui8.net/"}
-              target="_blank"
-            >
-              <svg className="icon icon-facebook">
-                <use xlinkHref="img/sprite.svg#icon-facebook"></use>
-              </svg>
-            </Link>
-          </div>
         </div>
       </div>
     </header>

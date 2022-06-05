@@ -60,14 +60,12 @@ const CartPopulate = (props) => {
       </div>
       <div className="basket__total">
         <div className="basket__text">Total:</div>
-        <div className="basket__text">{`$${
-          cart.total + cart.total * 0.12
-        }`}</div>
+        <div className="basket__text">{`$${cart.total + 15}`}</div>
       </div>
       <div className="basket__btns">
-        <a className="basket__btn btn btn_green" href="checkout.html">
-          Checkout{" "}
-        </a>
+        <Link className="basket__btn btn btn_green" to={"checkout"}>
+          Checkout
+        </Link>
         <Link className="basket__btn btn btn_border" to={"cart"}>
           Edit Cart
         </Link>

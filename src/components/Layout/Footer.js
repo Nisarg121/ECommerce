@@ -1,13 +1,16 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { homePage } from "../../Routes/Routes";
 
-const Footer = () => {
+const Footer = (props) => {
   const categoriesList = useSelector((state) => state.categories.categoryList);
 
   const bgModeHandler = () => {
     const body = document.getElementsByTagName("BODY")[0];
     body.classList.toggle("dark");
+    props.setIsDark(!props.isDark);
   };
 
   return (
@@ -15,35 +18,28 @@ const Footer = () => {
       <div className="footer__center center">
         <div className="footer__row">
           <div className="footer__col">
-            <a className="footer__logo" href="index.html">
-              <img
-                className="footer__pic footer__pic_black-desktop"
-                src="img/logo.svg"
-                alt=""
-              />
-              <img
-                className="footer__pic footer__pic_white-desktop"
-                src="img/logo-white.svg"
-                alt=""
-              />
-              <img
-                className="footer__pic footer__pic_black-mobile"
-                src="img/logo-mobile.svg"
-                alt=""
-              />
-              <img
-                className="footer__pic footer__pic_white-mobile"
-                src="img/logo-mobile-white.svg"
-                alt=""
-              />
-            </a>
+            <Link className="footer__logo" to={`/${homePage}`}>
+              {props.isDark ? (
+                <img
+                  className="header__pic header__pic_black-desktop"
+                  src="img/Allure-dark.svg"
+                  alt=""
+                />
+              ) : (
+                <img
+                  className="header__pic header__pic_black-desktop"
+                  src="img/Allure-white.svg"
+                  alt=""
+                />
+              )}
+            </Link>
             <div className="footer__copyright">
               © 2020 - All rights reserved
             </div>
             <div className="footer__social social">
               <a
                 className="social__link"
-                href="https://www.instagram.com/ui8net/"
+                href="https://www.instagram.com"
                 target="_blank"
               >
                 <svg className="icon icon-instagram">
@@ -52,7 +48,7 @@ const Footer = () => {
               </a>
               <a
                 className="social__link"
-                href="https://twitter.com/ui8"
+                href="https://twitter.com"
                 target="_blank"
               >
                 <svg className="icon icon-twitter">
@@ -61,7 +57,7 @@ const Footer = () => {
               </a>
               <a
                 className="social__link"
-                href="https://www.facebook.com/ui8.net/"
+                href="https://www.facebook.com"
                 target="_blank"
               >
                 <svg className="icon icon-facebook">
@@ -95,7 +91,32 @@ const Footer = () => {
             <div className="footer__category">Categories</div>
             <div className="footer__menu">
               {categoriesList.length === 0 ? (
-                <div className="loader centered"></div>
+                <>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                  <div class="category_link">
+                    <Skeleton />
+                  </div>
+                </>
               ) : (
                 categoriesList.map((category) => (
                   <Link

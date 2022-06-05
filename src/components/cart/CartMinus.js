@@ -20,11 +20,11 @@ const CartMinus = (props) => {
   };
   return (
     <button
-      class="counter__btn counter__btn_minus js-counter-minus"
+      className="counter__btn counter__btn_minus js-counter-minus"
       type="button"
       onClick={quantityDec}
     >
-      <svg class="icon icon-arrow-prev">
+      <svg className="icon icon-arrow-prev">
         <use xlinkHref="img/sprite.svg#icon-arrow-prev"></use>
       </svg>
     </button>

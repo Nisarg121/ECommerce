@@ -9,9 +9,9 @@ export const contact = "contact";
 export const login = "login";
 export const signUp = "signUp";
 export const cart = "cart";
+export const checkout = "checkout";
 
 //api Routes
-
 export const getAllCategriesUrl = `${DOMAIN}/category`;
 export const getAllProductsUrl = `${DOMAIN}/product`;
 export const getBannerDetailsUrl = `${DOMAIN}/banner/bannerDetails`;
@@ -19,6 +19,10 @@ export const getReviewsUrl = `${DOMAIN}/review`;
 export const getCartUrl = `${DOMAIN}/cart/getAllCartItems`;
 export const manageCartUrl = `${DOMAIN}/cart/manageCart`;
 export const getFilteredProductsUrl = `${DOMAIN}/product/byCategory`;
+export const getAddressesUrl = `${DOMAIN}/checkout/address`;
+export const addAddressesUrl = `${DOMAIN}/checkout/addAddress`;
+export const createOrderurl = `${DOMAIN}/order/createOrder`;
+export const updateOrderurl = `${DOMAIN}/order/updateOrder`;
 
 //images path
 export const productImageUrl = `${DOMAIN}/uploads/product/original`;

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getCart } from "../../apis/Cart";
@@ -38,7 +39,28 @@ const CartHeader = () => {
         </a>
         <div className="header__body">
           <div className="basket basket_header">
-            <div className="loader centered">loading...</div>
+            <div className="basket__list">
+              {cart.items.map((product) => (
+                <div className="basket__item" key={product.productId}>
+                  <div className="basket__preview">
+                    <Skeleton />
+                  </div>
+                  <div className="basket__details">
+                    <div className="basket__product">
+                      <Skeleton />
+                    </div>
+                    <div className="basket__price">
+                      <div className="basket__actual">
+                        <Skeleton />
+                      </div>
+                    </div>
+                  </div>
+                  <button className="basket__remove">
+                    <Skeleton />
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

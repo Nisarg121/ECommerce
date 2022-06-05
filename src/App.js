@@ -23,6 +23,7 @@ import { tokenLogin } from "./store/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   const routePath = useLocation();
@@ -97,15 +98,13 @@ function App() {
               isAuth ? <Navigate replace to={`/${homePage}`} /> : <Login />
             }
           />
-          <Route
-            path={cart}
-            element={isAuth ? <Cart /> : <Navigate replace to={`/${login}`} />}
-          />
+          <Route path={cart} element={<Cart />} />
           <Route path={signUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />
           <Route path={category} element={<Category />} />
           <Route path={contact} element={<Contact />} />
+          <Route path={"checkout"} element={<CheckOut />} />
           <Route path={"product"} element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -7,6 +7,7 @@ import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
 import { homePage, signUp } from "../../Routes/Routes";
 import { setToken } from "../../store/Auth";
+import { setUserInfo } from "../../store/UserInfo";
 
 const LoginForm = () => {
   const {
@@ -20,12 +21,13 @@ const LoginForm = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
-    if (status === "completed") {
+    if (status === "completed" && !error) {
       if (error) {
         toast.error(error);
       } else {
         localStorage.setItem("eComToken", loginResponseData.token);
         dispatch(setToken(loginResponseData.token));
+        dispatch(setUserInfo(loginResponseData));
         toast.success("Login Successfully.");
         navigator(`/${homePage}`);
       }
@@ -70,7 +72,7 @@ const LoginForm = () => {
       email: enteredEmail,
       password: enteredPassword,
     };
-    
+
     sendRequest(loginData);
     return;
   };

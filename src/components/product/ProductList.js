@@ -22,7 +22,7 @@ const ProductList = () => {
   if (error) {
     return toast.error(error);
   }
-
+  console.log(productList);
   return (
     <div className="products products_main section">
       <div className="products__center center">

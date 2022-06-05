@@ -8,7 +8,7 @@ import { category } from "../Routes/Routes";
 
 const Cart = () => {
   const { items } = useSelector((state) => state.cart);
-  console.log(items);
+
   return (
     <div className="cart section">
       <div className="cart__center center">
@@ -27,7 +27,7 @@ const Cart = () => {
         )}
         {items.length === 0 && (
           <div className="centered checkout__container">
-            <div className="checkout__item js-checkout-item">
+            <div className="display js-checkout-item">
               <div className="checkout__category">Your Cart Is Empty</div>
               <Link to={`/${category}`}>
                 <button className="checkout__btn btn btn_green btn_wide js-checkout-btn">

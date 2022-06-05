@@ -10,8 +10,7 @@ const ProductFilters = (props) => {
   const filterBody = {
     color: colorFilter,
     categoryIds: categoryFilter.map((category) => category.categoryId),
-    price: priceFilter,
-    pageNo: 1,
+    price: priceFilter
   };
 
   const removeColorFilter = (color) => {

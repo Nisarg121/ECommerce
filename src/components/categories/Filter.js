@@ -14,6 +14,12 @@ const Filter = (props) => {
   const { categoryList } = useSelector((state) => state.categories);
   const [showDrop, setShowDrop] = useState([false, false, false]);
 
+  // const filters = document.getElementsByClassName("js-drop-head");
+
+  // window.onclick = (e) => {
+
+  // };
+
   const categories = categoryList.map((category) => {
     return {
       categoryId: category._id,
@@ -48,7 +54,7 @@ const Filter = (props) => {
   return (
     <>
       <div
-        className={`filters__drop drop js-drop ${showDrop[0] ? "open" : ""}`}
+        className={`filters__drop drop js-drop ${showDrop[0] ? "open" : ""} `}
       >
         <div
           className="drop__head js-drop-head"
@@ -63,7 +69,10 @@ const Filter = (props) => {
                 props.colorFilter.includes(color) ? "active" : ""
               }`}
               key={color}
-              onClick={() => colorFilterHandler(color)}
+              onClick={() => {
+                colorFilterHandler(color);
+                // setShowDrop([!showDrop[0], false, false]);
+              }}
             >
               {color}
             </li>
@@ -90,7 +99,10 @@ const Filter = (props) => {
                   : ""
               }`}
               key={category.categoryId}
-              onClick={() => categoryFilterHandler(category)}
+              onClick={() => {
+                categoryFilterHandler(category);
+                setShowDrop([false, !showDrop[1], false]);
+              }}
             >
               {category.categoryName}
             </li>
@@ -121,9 +133,12 @@ const Filter = (props) => {
             className={`drop__link js-drop-link ${
               props.priceFilter === "desc" ? "active" : ""
             }`}
-            onClick={() =>
-              props.setPriceFilter(props.priceFilter === "desc" ? null : "desc")
-            }
+            onClick={() => {
+              props.setPriceFilter(
+                props.priceFilter === "desc" ? null : "desc"
+              );
+              setShowDrop([false, false, !showDrop[2]]);
+            }}
           >
             high to low
           </li>
