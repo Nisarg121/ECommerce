@@ -63,8 +63,9 @@ const BillingAddress = (props) => {
             {addNew && (
               <AddressForm
                 setCount={setCount}
+                count={props.count}
                 addNew={addNew}
-                setAddresses={props.setAddresses}
+                setAllAddresses={props.setAllAddresses}
                 setAddress={setBillingAddress}
                 setCloseAddNew={setAddNew}
               />

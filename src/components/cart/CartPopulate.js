@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
 import { productImageUrl } from "../../Routes/Routes";
 import { removeFromCart } from "../../store/cart";
+import sprite from "../../assets/img/sprite.svg";
 
 const CartPopulate = (props) => {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const CartPopulate = (props) => {
               onClick={() => removeItemFromCart(product.productId)}
             >
               <svg className="icon icon-close">
-                <use xlinkHref="img/sprite.svg#icon-close"></use>
+                <use xlinkHref={`${sprite}#icon-close`}></use>
               </svg>
             </button>
           </div>
@@ -63,10 +64,10 @@ const CartPopulate = (props) => {
         <div className="basket__text">{`$${cart.total + 15}`}</div>
       </div>
       <div className="basket__btns">
-        <Link className="basket__btn btn btn_green" to={"checkout"}>
+        <Link className="basket__btn btn btn_green" to={"/checkout"}>
           Checkout
         </Link>
-        <Link className="basket__btn btn btn_border" to={"cart"}>
+        <Link className="basket__btn btn btn_border" to={"/cart"}>
           Edit Cart
         </Link>
       </div>

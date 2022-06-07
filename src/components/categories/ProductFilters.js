@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
 import FilterProducts from "./FilterProducts";
+import $ from "jquery";
 
 const ProductFilters = (props) => {
   const [colorFilter, setColorFilter] = useState([]);
@@ -25,6 +26,17 @@ const ProductFilters = (props) => {
     });
   };
 
+  useEffect(() => {
+    (function () {
+      var filters = $(".js-filters"),
+        open = filters.find(".js-filters-open"),
+        wrap = filters.find(".js-filters-wrap");
+      open.on("click", function () {
+        open.toggleClass("active");
+        wrap.slideToggle();
+      });
+    })();
+  }, []);
   return (
     <>
       <div className="filters js-filters">
@@ -64,7 +76,7 @@ const ProductFilters = (props) => {
             <>
               {categoryFilter.map((category) => (
                 <div
-                  key={category.categoryIid}
+                  key={category.categoryId}
                   className="filters__tag"
                   onClick={() => removeCategoryFilter(category.categoryId)}
                 >
@@ -78,6 +90,7 @@ const ProductFilters = (props) => {
             <>
               {
                 <div
+                  key={"price"}
                   className="filters__tag"
                   onClick={() => setPriceFilter(null)}
                 >

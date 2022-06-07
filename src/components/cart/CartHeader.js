@@ -6,6 +6,8 @@ import { getCart } from "../../apis/Cart";
 import useHttp from "../../hooks/use-http";
 import { initializeCart } from "../../store/cart";
 import CartPopulate from "./CartPopulate";
+import sprite from "../../assets/img/sprite.svg";
+import { Link } from "react-router-dom";
 
 const CartHeader = () => {
   const cart = useSelector((state) => state.cart);
@@ -32,11 +34,11 @@ const CartHeader = () => {
   if (status === "pending" && isAuth === true) {
     return (
       <div className="header__item">
-        <a className="header__link header__link_cart active" href="cart.html">
+        <div className="header__link header__link_cart">
           <svg className="icon icon-cart">
-            <use xlinkHref="img/sprite.svg#icon-cart"></use>
+            <use xlinkHref={`${sprite}#icon-cart`}></use>
           </svg>
-        </a>
+        </div>
         <div className="header__body">
           <div className="basket basket_header">
             <div className="basket__list">
@@ -69,11 +71,11 @@ const CartHeader = () => {
 
   return (
     <div className="header__item">
-      <div className="header__link header__link_cart active">
+      <Link className="header__link header__link_cart active" to={`/cart`}>
         <svg className="icon icon-cart">
-          <use xlinkHref="img/sprite.svg#icon-cart"></use>
+          <use xlinkHref={`${sprite}#icon-cart`}></use>
         </svg>
-      </div>
+      </Link>
       <div className="header__body">
         <div className="basket basket_header">
           {cart.items.length > 0 ? (

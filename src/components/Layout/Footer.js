@@ -3,6 +3,11 @@ import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { homePage } from "../../Routes/Routes";
+import AllureDark from "../../assets/img/Allure-dark.svg";
+import AllureWhite from "../../assets/img/Allure-white.svg";
+import moon from "../../assets/img/moon.svg";
+import sun from "../../assets/img/sun.svg";
+import sprite from "../../assets/img/sprite.svg";
 
 const Footer = (props) => {
   const categoriesList = useSelector((state) => state.categories.categoryList);
@@ -22,13 +27,13 @@ const Footer = (props) => {
               {props.isDark ? (
                 <img
                   className="header__pic header__pic_black-desktop"
-                  src="img/Allure-dark.svg"
+                  src={AllureDark}
                   alt=""
                 />
               ) : (
                 <img
                   className="header__pic header__pic_black-desktop"
-                  src="img/Allure-white.svg"
+                  src={AllureWhite}
                   alt=""
                 />
               )}
@@ -43,7 +48,7 @@ const Footer = (props) => {
                 target="_blank"
               >
                 <svg className="icon icon-instagram">
-                  <use xlinkHref="img/sprite.svg#icon-instagram"></use>
+                  <use xlinkHref={`${sprite}#icon-instagram`}></use>
                 </svg>
               </a>
               <a
@@ -52,7 +57,7 @@ const Footer = (props) => {
                 target="_blank"
               >
                 <svg className="icon icon-twitter">
-                  <use xlinkHref="img/sprite.svg#icon-twitter"></use>
+                  <use xlinkHref={`${sprite}#icon-twitter`}></use>
                 </svg>
               </a>
               <a
@@ -61,7 +66,7 @@ const Footer = (props) => {
                 target="_blank"
               >
                 <svg className="icon icon-facebook">
-                  <use xlinkHref="img/sprite.svg#icon-facebook"></use>
+                  <use xlinkHref={`${sprite}#icon-facebook`}></use>
                 </svg>
               </a>
             </div>
@@ -75,12 +80,12 @@ const Footer = (props) => {
                 <span className="switch__tick">
                   <img
                     className="switch__pic switch__pic_moon"
-                    src="img/moon.svg"
+                    src={moon}
                     alt=""
                   />
                   <img
                     className="switch__pic switch__pic_sun"
-                    src="img/sun.svg"
+                    src={sun}
                     alt=""
                   />
                 </span>

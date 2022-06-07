@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import { SkeletonTheme } from "react-loading-skeleton";
+import './assets/css/app.css';
+import './assets/css/app.css.map';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
 import { incQuantity } from "../../store/cart";
+import sprite from "../../assets/img/sprite.svg";
 
 const CartPlus = (props) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const CartPlus = (props) => {
       onClick={quantityInc}
     >
       <svg className="icon icon-arrow-next">
-        <use xlinkHref="img/sprite.svg#icon-arrow-next"></use>
+        <use xlinkHref={`${sprite}#icon-arrow-next`}></use>
       </svg>
     </button>
   );

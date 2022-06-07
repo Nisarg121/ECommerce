@@ -73,7 +73,7 @@ const AddressForm = (props) => {
       });
       props.setAddress(addressData);
       props.setCloseAddNew(false);
-      props.setCount(3);
+      props.setCount(props.count + 1);
     }
   }, [sendRequest, status, error, addressData]);
 
@@ -248,7 +248,7 @@ const AddressForm = (props) => {
           type="submit"
         >
           {status === "pending" ? (
-            <i class="fa fa-spinner fa-spin"></i>
+            <i className="fa fa-spinner fa-spin"></i>
           ) : (
             "Continue"
           )}

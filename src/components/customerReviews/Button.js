@@ -1,4 +1,5 @@
 import React from "react";
+import sprite from "../../assets/img/sprite.svg";
 
 export const PrevButton = (props) => {
   const { className, onClick } = props;
@@ -11,7 +12,7 @@ export const PrevButton = (props) => {
       <svg className="icon icon-arrow-prev">
         <use
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          xlinkHref="img/sprite.svg#icon-arrow-prev"
+          xlinkHref={`${sprite}#icon-arrow-prev`}
         ></use>
       </svg>
     </button>
@@ -29,7 +30,7 @@ export const NextButton = (props) => {
       <svg className="icon icon-arrow-next">
         <use
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          xlinkHref="img/sprite.svg#icon-arrow-next"
+          xlinkHref={`${sprite}#icon-arrow-next`}
         ></use>
       </svg>
     </button>

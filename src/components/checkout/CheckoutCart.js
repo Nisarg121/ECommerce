@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
 import { cart, productImageUrl } from "../../Routes/Routes";
 import { removeFromCart } from "../../store/cart";
+import sprite from "../../assets/img/sprite.svg";
 
 const CheckoutCart = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const CheckoutCart = () => {
                   onClick={() => removeItemFromCart(product.productId)}
                 >
                   <svg className="icon icon-close">
-                    <use xlinkHref="img/sprite.svg#icon-close"></use>
+                    <use xlinkHref={`${sprite}#icon-close`}></use>
                   </svg>
                 </button>
               </div>

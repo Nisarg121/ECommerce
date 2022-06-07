@@ -12,13 +12,13 @@ const CartItemList = () => {
       <div className="cart__list">
         {cartProducts.map((product) => (
           <div className="cart__item" key={product.productId}>
-            <a className="cart__preview" href="#">
+            <div className="cart__preview" href="#">
               <img
                 className="cart__pic"
                 src={`${productImageUrl}/${product.productImage}`}
                 alt=""
               />
-            </a>
+            </div>
             <div className="cart__details">
               <a className="cart__product" href="#">
                 {product.name}

@@ -55,6 +55,7 @@ const ShippingAddress = (props) => {
               <>
                 <AddressForm
                   setCount={setCount}
+                  count={count}
                   addNew={addNew}
                   setAllAddresses={setAllAddresses}
                   setAddress={setShippingAddress}
@@ -70,6 +71,7 @@ const ShippingAddress = (props) => {
         setCount={setCount}
         shippingAddress={shippingAddress}
         allAddresses={allAddresses}
+        setAllAddresses={setAllAddresses}
       />
     </>
   );

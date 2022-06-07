@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { getReviews } from "../../apis/cms";
 import useHttp from "../../hooks/use-http";
 import { PrevButton, NextButton } from "./Button";
+import ava1 from "../../assets/img/ava-1.jpg";
 
 const Reviews = () => {
   const { sendRequest, data: reviewData, status, error } = useHttp(getReviews);
@@ -49,7 +50,7 @@ const Reviews = () => {
                 {reviewData.map((review) => (
                   <div className="review__item" key={review.name}>
                     <div className="review__ava">
-                      <img className="review__pic" src="img/ava-1.jpg" alt="" />
+                      <img className="review__pic" src={ava1} alt="" />
                     </div>
                     <div className="review__author">{review.name}</div>
                     <div className="review__text">{review.description}</div>

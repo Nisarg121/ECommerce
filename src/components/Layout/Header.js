@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryName from "../categories/CategoryName";
-import { aboutUs, contact, homePage } from "../../Routes/Routes";
+import { aboutUs, cart, contact, homePage } from "../../Routes/Routes";
 import useHttp from "../../hooks/use-http";
 import { toast } from "react-toastify";
 import { getAllCategries } from "../../apis/Category";
@@ -10,6 +10,9 @@ import { categoryActions } from "../../store/Category";
 import { clearToken } from "../../store/Auth";
 import CartHeader from "../cart/CartHeader";
 import { clearCart } from "../../store/cart";
+import AllureDark from "../../assets/img/Allure-dark.svg";
+import AllureWhite from "../../assets/img/Allure-white.svg";
+import sprite from "../../assets/img/sprite.svg";
 
 const Header = (props) => {
   const [toggleHeader, setToggleHeader] = useState(false);
@@ -76,9 +79,9 @@ const Header = (props) => {
         ></button>
         <Link className="header__logo" to={`/${homePage}`}>
           {props.isDark ? (
-            <img className="header__pic " src="img/Allure-dark.svg" alt="" />
+            <img className="header__pic " src={AllureDark} alt="" />
           ) : (
-            <img className="header__pic" src="img/Allure-white.svg" alt="" />
+            <img className="header__pic" src={AllureWhite} alt="" />
           )}
         </Link>
         <div className="header__control">
@@ -98,7 +101,7 @@ const Header = (props) => {
               </div>
               <button className={`search__btn js-search-btn`}>
                 <svg className="icon icon-search">
-                  <use xlinkHref="img/sprite.svg#icon-search"></use>
+                  <use xlinkHref={`${sprite}#icon-search`}></use>
                 </svg>
               </button>
             </div>
@@ -108,13 +111,13 @@ const Header = (props) => {
             {isAuth ? (
               <Link className="header__link" onClick={logOutHandler} to={"#"}>
                 <svg className="icon icon-user">
-                  <use xlinkHref="img/sprite.svg#icon-signOut"></use>
+                  <use xlinkHref={`${sprite}#icon-signOut`}></use>
                 </svg>
               </Link>
             ) : (
               <Link className="header__link" to={"/login"}>
                 <svg className="icon icon-user">
-                  <use xlinkHref="img/sprite.svg#icon-user"></use>
+                  <use xlinkHref={`${sprite}#icon-user`}></use>
                 </svg>
               </Link>
             )}
@@ -176,6 +179,13 @@ const Header = (props) => {
                   <div className="menu__group">{categoryNames}</div>
                 </div>
               </div>
+              <Link
+                className="menu__item"
+                to={`/${cart}`}
+                onClick={() => setToggleHeader(false)}
+              >
+                My Cart
+              </Link>
               <Link
                 className="menu__item"
                 to={aboutUs}

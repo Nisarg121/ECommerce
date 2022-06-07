@@ -18,7 +18,6 @@ import {
 } from "./Routes/Routes";
 import Category from "./pages/Category";
 import Contact from "./pages/Contact";
-import $ from "jquery";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { tokenLogin } from "./store/Auth";
@@ -34,57 +33,12 @@ function App() {
   const onTop = () => {
     window.scrollTo(0, 0);
   };
+
   useEffect(() => {
     onTop();
   }, [routePath]);
 
-  const loadJquery = () => {
-    // filters
-    (function () {
-      var filters = $(".js-filters"),
-        open = filters.find(".js-filters-open"),
-        wrap = filters.find(".js-filters-wrap");
-      open.on("click", function () {
-        open.toggleClass("active");
-        wrap.slideToggle();
-      });
-    })();
-
-    // (function () {
-    //   $(".js-zoom").ezPlus({
-    //     gallery: "gallery",
-    //     galleryActiveClass: "active",
-    //     zoomWindowWidth: 504,
-    //     zoomWindowHeight: 504,
-    //     zoomWindowOffsetX: 50,
-    //     borderSize: "5",
-    //     borderColour: "#F6F7FB",
-    //     responsive: true,
-    //     respond: [
-    //       {
-    //         range: "768-1365",
-    //         zoomType: "inner",
-    //         cursor: "crosshair",
-    //         borderSize: "0",
-    //       },
-    //       {
-    //         range: "320-767",
-    //         enabled: false,
-    //         showLens: false,
-    //       },
-    //     ],
-    //   });
-
-    //   if (window.matchMedia("(max-width: 767px)").matches) {
-    //     $(".card__preview").on("click", function (e) {
-    //       e.preventDefault();
-    //     });
-    //   }
-    // })();
-  };
-
   useEffect(() => {
-    loadJquery();
     dispatch(tokenLogin());
   }, [dispatch]);
 

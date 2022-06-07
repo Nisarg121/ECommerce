@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
 import { removeFromCart } from "../../store/cart";
+import sprite from "../../assets/img/sprite.svg";
 
 const CartRemove = (props) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const CartRemove = (props) => {
   return (
     <button className="cart__remove" onClick={removeProduct}>
       <svg className="icon icon-close">
-        <use xlinkHref="img/sprite.svg#icon-close"></use>
+        <use xlinkHref={`${sprite}#icon-close`}></use>
       </svg>
     </button>
   );
