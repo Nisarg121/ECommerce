@@ -32,7 +32,7 @@ const ProductItem = (props) => {
   return (
     <div className="product">
       <div className="product__view">
-        <Link className="product__preview" to={`products/${props.id}`}>
+        <div className="product__preview" to={`products/${props.id}`}>
           <img
             className="product__pic"
             src={`${productImageUrl}/${props.image}`}
@@ -41,7 +41,7 @@ const ProductItem = (props) => {
               e.target.src = "img/mstile-310x310.png";
             }}
           />
-        </Link>
+        </div>
         <button
           className="product__btn btn btn_green centered"
           onClick={() =>
