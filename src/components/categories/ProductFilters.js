@@ -4,13 +4,13 @@ import FilterProducts from "./FilterProducts";
 
 const ProductFilters = (props) => {
   const [colorFilter, setColorFilter] = useState([]);
-  const [categoryFilter, setCategoryFilter] = useState([]);
   const [priceFilter, setPriceFilter] = useState(null);
+  const [categoryFilter, setCategoryFilter] = useState([]);
 
   const filterBody = {
     color: colorFilter,
     categoryIds: categoryFilter.map((category) => category.categoryId),
-    price: priceFilter
+    price: priceFilter,
   };
 
   const removeColorFilter = (color) => {

@@ -19,8 +19,8 @@ const CartRemove = (props) => {
     }
   };
   return (
-    <button class="cart__remove" onClick={removeProduct}>
-      <svg class="icon icon-close">
+    <button className="cart__remove" onClick={removeProduct}>
+      <svg className="icon icon-close">
         <use xlinkHref="img/sprite.svg#icon-close"></use>
       </svg>
     </button>

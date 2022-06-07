@@ -4,7 +4,7 @@ import { getfilteredProducts } from "../../apis/Category";
 const LoadMore = (props) => {
   const [pageNo, setPageNo] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(pageNo);
+  
   useEffect(() => {
     setPageNo(1);
   }, [props.filterBody]);

@@ -5,6 +5,7 @@ const DOMAIN = "http://localhost:3000";
 export const homePage = "homePage";
 export const aboutUs = "aboutUs";
 export const category = "category";
+export const categoryId = "category/:categoryId";
 export const contact = "contact";
 export const login = "login";
 export const signUp = "signUp";

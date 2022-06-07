@@ -19,12 +19,12 @@ const FilterProducts = (props) => {
     if (status === "completed" && !error) {
       setProductList(data);
     }
-  }, [sendRequest, status, error]);
+  }, [sendRequest, status, error, data]);
 
   useEffect(() => {
     setIsLoadMore(true);
     sendRequest(props.filterBody);
-  }, [sendRequest, props.filterBody]);
+  }, [sendRequest, props]);
 
   if (status === "pending") {
     return (

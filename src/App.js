@@ -13,6 +13,8 @@ import {
   login,
   signUp,
   cart,
+  categoryId,
+  checkout,
 } from "./Routes/Routes";
 import Category from "./pages/Category";
 import Contact from "./pages/Contact";
@@ -102,9 +104,10 @@ function App() {
           <Route path={signUp} element={<SignUp />} />
           <Route path={homePage} element={<Homepage />} />
           <Route path={aboutUs} element={<AboutUs />} />
+          <Route path={categoryId} element={<Category />} />
           <Route path={category} element={<Category />} />
           <Route path={contact} element={<Contact />} />
-          <Route path={"checkout"} element={<CheckOut />} />
+          <Route path={checkout} element={<CheckOut />} />
           <Route path={"product"} element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

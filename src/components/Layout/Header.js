@@ -12,7 +12,6 @@ import CartHeader from "../cart/CartHeader";
 import { clearCart } from "../../store/cart";
 
 const Header = (props) => {
-  console.log(props.isDark);
   const [toggleHeader, setToggleHeader] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);

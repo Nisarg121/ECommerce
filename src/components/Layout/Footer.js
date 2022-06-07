@@ -92,28 +92,28 @@ const Footer = (props) => {
             <div className="footer__menu">
               {categoriesList.length === 0 ? (
                 <>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
-                  <div class="category_link">
+                  <div className="category_link">
                     <Skeleton />
                   </div>
                 </>

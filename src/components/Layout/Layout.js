@@ -34,7 +34,7 @@ const Layout = (props) => {
         title="Go to top"
         className="scroll"
       >
-        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <i className="fa fa-arrow-up" aria-hidden="true"></i>
       </button>
       {props.children}
       <Footer isDark={isDark} setIsDark={setIsDark} />

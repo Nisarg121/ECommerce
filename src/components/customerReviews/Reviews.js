@@ -47,7 +47,7 @@ const Reviews = () => {
             <div className="review__wrap">
               <Slider {...setting} className="review__slider js-slider-review">
                 {reviewData.map((review) => (
-                  <div className="review__item">
+                  <div className="review__item" key={review.name}>
                     <div className="review__ava">
                       <img className="review__pic" src="img/ava-1.jpg" alt="" />
                     </div>

@@ -11,7 +11,7 @@ const CartItemList = () => {
     <div className="cart__col">
       <div className="cart__list">
         {cartProducts.map((product) => (
-          <div className="cart__item">
+          <div className="cart__item" key={product.productId}>
             <a className="cart__preview" href="#">
               <img
                 className="cart__pic"
@@ -34,7 +34,8 @@ const CartItemList = () => {
                     type="text"
                     value={product.quantity}
                     size="3"
-                  />{" "}
+                    readOnly
+                  />
                   <CartPlus productId={product.productId} />
                 </div>
                 <CartRemove productId={product.productId} />

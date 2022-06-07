@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 const colors = [
   "Skin",
   "Brown",
@@ -11,14 +12,20 @@ const colors = [
 ];
 
 const Filter = (props) => {
+  let { categoryId } = useParams();
   const { categoryList } = useSelector((state) => state.categories);
   const [showDrop, setShowDrop] = useState([false, false, false]);
 
-  // const filters = document.getElementsByClassName("js-drop-head");
-
-  // window.onclick = (e) => {
-
-  // };
+  useEffect(() => {
+    const foundCategory = categoryList.find(
+      (category) => category._id === categoryId
+    );
+    if (foundCategory) {
+      props.setcategoryFilter([
+        { categoryId: foundCategory._id, categoryName: foundCategory.name },
+      ]);
+    }
+  }, [categoryId, categoryList]);
 
   const categories = categoryList.map((category) => {
     return {
