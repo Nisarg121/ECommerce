@@ -16,6 +16,7 @@ import {
 } from "./Routes/Routes";
 import { tokenLogin } from "./store/Auth";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "./components/Layout/Loader";
 
 const Homepage = React.lazy(() => import("./pages/Homepage"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -45,15 +46,9 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
-      <Layout>
-        <Suspense
-          fallback={
-            <div className="centered">
-              Loading...
-            </div>
-          }
-        >
+      <Suspense fallback={<Loader />}>
+        <ToastContainer />
+        <Layout>
           <Routes>
             <Route path="/" element={<Navigate replace to={homePage} />} />
             <Route
@@ -73,8 +68,8 @@ function App() {
             {/* <Route path={"product"} element={<ProductDetail />} /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Suspense>
-      </Layout>
+        </Layout>
+      </Suspense>
     </>
   );
 }
