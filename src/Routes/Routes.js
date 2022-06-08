@@ -1,5 +1,5 @@
-const DOMAIN = "https://ecommercebackendaiminfologics.herokuapp.com";
-// const DOMAIN = "http://localhost:3000";
+// const DOMAIN = "https://ecommercebackendaiminfologics.herokuapp.com";
+const DOMAIN = "http://localhost:3000";
 
 //Main Routes
 export const homePage = "homePage";
@@ -11,10 +11,12 @@ export const login = "login";
 export const signUp = "signUp";
 export const cart = "cart";
 export const checkout = "checkout";
+export const product = "product";
 
 //api Routes
 export const getAllCategriesUrl = `${DOMAIN}/category`;
 export const getAllProductsUrl = `${DOMAIN}/product`;
+export const getProdctByIdUrl = `${DOMAIN}/product`;
 export const getBannerDetailsUrl = `${DOMAIN}/banner/bannerDetails`;
 export const getReviewsUrl = `${DOMAIN}/review`;
 export const getCartUrl = `${DOMAIN}/cart/getAllCartItems`;

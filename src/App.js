@@ -13,6 +13,7 @@ import {
   cart,
   categoryId,
   checkout,
+  product,
 } from "./Routes/Routes";
 import { tokenLogin } from "./store/Auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +27,7 @@ const AboutUs = React.lazy(() => import("./pages/AboutUs"));
 const Category = React.lazy(() => import("./pages/Category"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const CheckOut = React.lazy(() => import("./pages/CheckOut"));
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 
 function App() {
   const routePath = useLocation();
@@ -46,9 +48,9 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <ToastContainer />
-        <Layout>
+      <ToastContainer />
+      <Layout>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Navigate replace to={homePage} />} />
             <Route
@@ -65,11 +67,11 @@ function App() {
             <Route path={category} element={<Category />} />
             <Route path={contact} element={<Contact />} />
             <Route path={checkout} element={<CheckOut />} />
-            {/* <Route path={"product"} element={<ProductDetail />} /> */}
+            <Route path={`${product}/:productId`} element={<ProductDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Layout>
-      </Suspense>
+        </Suspense>
+      </Layout>
     </>
   );
 }

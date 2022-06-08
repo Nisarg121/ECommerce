@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { manageCart } from "../../apis/Cart";
-import { cart, login, productImageUrl } from "../../Routes/Routes";
+import { cart, login, product, productImageUrl } from "../../Routes/Routes";
 import { addToCart } from "../../store/cart";
 
 const ProductItem = (props) => {
@@ -21,8 +21,8 @@ const ProductItem = (props) => {
         cartOperation: "inc",
       });
 
+      console.log(productInfo);
       dispatch(addToCart(productInfo));
-      toast.success("product added to the Cart.");
       Navigate(`/${cart}`);
     } catch (error) {
       toast.error(error.message);
@@ -32,7 +32,7 @@ const ProductItem = (props) => {
   return (
     <div className="product">
       <div className="product__view">
-        <div className="product__preview" to={`products/${props.id}`}>
+        <Link className="product__preview" to={`/${product}/${props.id}`}>
           <img
             className="product__pic"
             src={`${productImageUrl}/${props.image}`}
@@ -41,7 +41,7 @@ const ProductItem = (props) => {
               e.target.src = "img/mstile-310x310.png";
             }}
           />
-        </div>
+        </Link>
         <button
           className="product__btn btn btn_green centered"
           onClick={() =>
@@ -56,9 +56,7 @@ const ProductItem = (props) => {
           Add to Cart
         </button>
       </div>
-      <a className="product__name" href="product.html">
-        {props.name}
-      </a>
+      <div className="product__name">{props.name}</div>
       <div className="product__details">
         <div className="product__category green">{props.category.name}</div>
         <div className="product__price">
