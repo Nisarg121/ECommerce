@@ -1,5 +1,5 @@
-// const DOMAIN = "https://ecommercebackendaiminfologics.herokuapp.com";
-const DOMAIN = "http://localhost:3000";
+const DOMAIN = "https://ecommercebackendaiminfologics.herokuapp.com";
+// const DOMAIN = "http://localhost:3000";
 
 //Main Routes
 export const homePage = "homePage";
