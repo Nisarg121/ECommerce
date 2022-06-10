@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getBanner } from "../../apis/cms";
 import useHttp from "../../hooks/use-http";
-import { category, productImageUrl } from "../../Routes/Routes";
+import { category } from "../../Routes/Routes";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import mainPic from "../../assets/img/main-pic.png";

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import companyBg from "../assets/img/company-bg.jpg"
+import companyBg from "../assets/img/company-bg.jpg";
+import { homePage } from "../Routes/Routes";
 
 const AboutUs = () => {
   return (
@@ -9,9 +10,9 @@ const AboutUs = () => {
         <div className="breadcrumbs__center center">
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link" href="index.html">
+              <Link className="breadcrumbs__link" to={`/${homePage}`}>
                 Home Page
-              </a>
+              </Link>
             </li>
             <li className="breadcrumbs__item">
               <Link className="breadcrumbs__link" to="/aboutUs">
