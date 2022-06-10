@@ -21,7 +21,7 @@ const LoginForm = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
-    if (status === "completed" && !error) {
+    if (status === "completed") {
       if (error) {
         toast.error(error);
       } else {

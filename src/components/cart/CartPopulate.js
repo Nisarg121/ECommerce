@@ -19,7 +19,7 @@ const CartPopulate = (props) => {
       });
 
       dispatch(removeFromCart(productId));
-      toast.success("product remove successfuly.");
+      return toast.success("product remove successfully.");
     } catch (error) {
       toast.error(error.message);
     }

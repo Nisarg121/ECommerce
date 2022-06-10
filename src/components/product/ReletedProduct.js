@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import { productImageUrl } from "../../Routes/Routes";
+import { toast } from "react-toastify";
+import { manageCart } from "../../apis/Cart";
+import { cart, login, productImageUrl } from "../../Routes/Routes";
+import { addToCart } from "../../store/cart";
 import { NextButton, PrevButton } from "../customerReviews/Button";
-import ProductItem from "./ProductItem";
 
 const ReletedProduct = (props) => {
   const { ReletedProducts } = props.productInfo;
@@ -36,6 +39,27 @@ const ReletedProduct = (props) => {
       },
     ],
   };
+  console.log(ReletedProducts);
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
+  const { isAuth } = useSelector((state) => state.auth);
+
+  const addToCartHandler = async (productInfo) => {
+    try {
+      if (!isAuth) {
+        return Navigate(`/${login}`);
+      }
+      await manageCart({
+        productId: productInfo.productId,
+        cartOperation: "inc",
+      });
+
+      dispatch(addToCart(productInfo));
+      Navigate(`/${cart}`);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="slider section">
@@ -50,7 +74,7 @@ const ReletedProduct = (props) => {
                   <div className="product__view">
                     <Link
                       className="product__preview"
-                      to={`/${"product"}${product._id}`}
+                      to={`/${"product"}/${product._id}`}
                     >
                       <img
                         className="product__pic"
@@ -58,13 +82,23 @@ const ReletedProduct = (props) => {
                         alt=""
                       />
                     </Link>
-                    <button className="product__btn btn btn_green">
+                    <button
+                      className="product__btn btn btn_green"
+                      onClick={() =>
+                        addToCartHandler({
+                          productId: product._id,
+                          name: product.name,
+                          price: product.price,
+                          productImage: product.productImage,
+                        })
+                      }
+                    >
                       Add to Cart
                     </button>
                   </div>
-                  <a className="product__name" href="product.html">
-                    Damaged Repair
-                  </a>
+                  <div className="product__name">
+                    {product.name}
+                  </div>
                   <div className="product__details">
                     <div className="product__category green">Sun Care</div>
                     <div className="product__price">

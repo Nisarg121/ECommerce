@@ -6,16 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import { SkeletonTheme } from "react-loading-skeleton";
-import './assets/css/app.css';
-import './assets/css/app.css.map';
+import "./assets/css/app.css";
+import "./assets/css/app.css.map";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <SkeletonTheme baseColor="#F6F7FB" highlightColor="#ffffff" direction="">
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </SkeletonTheme>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );

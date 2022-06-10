@@ -2609,6 +2609,7 @@ body.dark .footer__link:hover {
 
 body.dark .switch__in {
   background: #1E1E27;
+  border: 4px solid #1E1E27;
 }
 
 .breadcrumbs {

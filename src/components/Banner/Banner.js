@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getBanner } from "../../apis/cms";
 import useHttp from "../../hooks/use-http";
-import { productImageUrl } from "../../Routes/Routes";
+import { category, productImageUrl } from "../../Routes/Routes";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import mainPic from "../../assets/img/main-pic.png";
 
 const Banner = () => {
   const {
@@ -40,7 +41,7 @@ const Banner = () => {
                 <Skeleton width={width * 0.25} height={60} />
               </div>
             </div>
-            <div className="main__preview" style={{ background: "#FFFFFF" }}>
+            <div className="main__preview">
               <Skeleton
                 width={520}
                 height={520}
@@ -63,19 +64,12 @@ const Banner = () => {
               -{bannerInfo.title} Products
             </div>
             <h1 className="main__title title">{bannerInfo.description}</h1>
-            <Link className="main__btn btn btn_green" to="/HomePage">
+            <Link className="main__btn btn btn_green" to={`/${category}`}>
               Shop Now
             </Link>
           </div>
           <div className="main__preview">
-            <img
-              className="main__pic"
-              src={`${productImageUrl}/${bannerInfo.image}`}
-              alt=""
-              onError={(e) =>
-                (e.target.onerror = null)((e.target.src = "img/main-pic.png"))
-              }
-            />
+            <img className="main__pic" src={mainPic} alt="" />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import companyBg from "../assets/img/company-bg.jpg"
 
 const AboutUs = () => {
   return (
@@ -26,7 +27,7 @@ const AboutUs = () => {
           <div className="company__center center">
             <div className="company__stage stage">- Learn More</div>
             <h2 className="company__title title title_mb-lg">All About Us</h2>
-            <img className="company__bg" src="img/company-bg.jpg" alt="" />
+            <img className="company__bg" src={companyBg} alt="" />
           </div>
         </div>
       </div>

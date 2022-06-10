@@ -15,15 +15,15 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (status === "completed" && !error) {
-      navigate(`/${login}`);
-      toast.success("Sign Up Successfully.");
+    if (status === "completed") {
+      if (error) {
+        return toast.error(error);
+      } else {
+        navigate(`/${login}`);
+        toast.success("Sign Up Successfully.");
+      }
     }
   }, [sendRequest, status, error]);
-
-  if (error) {
-    toast.error(error);
-  }
 
   const {
     enteredValue: enteredName,

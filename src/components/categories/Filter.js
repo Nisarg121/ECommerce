@@ -78,7 +78,7 @@ const Filter = (props) => {
               key={color}
               onClick={() => {
                 colorFilterHandler(color);
-                // setShowDrop([!showDrop[0], false, false]);
+                setShowDrop([!showDrop[0], false, false]);
               }}
             >
               {color}

@@ -37,6 +37,7 @@ const ProductFilters = (props) => {
       });
     })();
   }, []);
+
   return (
     <>
       <div className="filters js-filters">

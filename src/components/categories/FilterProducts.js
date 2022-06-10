@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getfilteredProducts } from "../../apis/Category";
 import useHttp from "../../hooks/use-http";
@@ -18,6 +19,9 @@ const FilterProducts = (props) => {
   useEffect(() => {
     if (status === "completed" && !error) {
       setProductList(data);
+    }
+    if (error) {
+      return toast.error(error);
     }
   }, [sendRequest, status, error, data]);
 
@@ -103,10 +107,6 @@ const FilterProducts = (props) => {
         </div>
       </div>
     );
-  }
-
-  if (error) {
-    return toast.error(error);
   }
 
   return (

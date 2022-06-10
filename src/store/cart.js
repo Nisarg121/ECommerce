@@ -27,6 +27,26 @@ export const cartSlice = createSlice({
       }
     },
 
+    addToCartWithQuantiy: (state, { payload: productInfo }) => {
+      const product = state.items.find(
+        (product) => product.productId === productInfo.productId
+      );
+      if (product) {
+        state.items = state.items.map((product) => {
+          if (product.productId === productInfo.productId) {
+            product.quantity+=productInfo.quantity;
+            state.total += product.price*productInfo.quantity;
+            return product;
+          }
+          return product;
+        });
+      } else {
+        state.items.push({ ...productInfo });
+        state.total += productInfo.price * productInfo.quantity;
+        return state;
+      }
+    },
+
     removeFromCart: (state, { payload: productId }) => {
       const product = state.items.find(
         (product) => product.productId === productId
@@ -99,6 +119,7 @@ export const cartSlice = createSlice({
 
 export const {
   addToCart,
+  addToCartWithQuantiy,
   removeFromCart,
   initializeCart,
   clearCart,

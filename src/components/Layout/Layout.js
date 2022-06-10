@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SkeletonTheme } from "react-loading-skeleton";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -26,7 +27,10 @@ const Layout = (props) => {
   }
 
   return (
-    <>
+    <SkeletonTheme
+      baseColor={isDark ? "#2e2e39" : "#F6F7FB"}
+      highlightColor={isDark ? "#40404b" : "#ffffff"}
+    >
       <Header isDark={isDark} />
       <button
         onClick={topFunction}
@@ -38,7 +42,7 @@ const Layout = (props) => {
       </button>
       {props.children}
       <Footer isDark={isDark} setIsDark={setIsDark} />
-    </>
+    </SkeletonTheme>
   );
 };
 

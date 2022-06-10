@@ -47,7 +47,6 @@ const Payment = (props) => {
         currency: orderInfo.currency,
         amount: orderInfo.amount,
         name: userInfo.name,
-        image: "img/logoimage2.png",
         order_id: orderInfo.razorpayOrderId,
         handler: async function (response) {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =

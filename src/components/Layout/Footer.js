@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { homePage } from "../../Routes/Routes";
+import { aboutUs, contact, homePage } from "../../Routes/Routes";
 import AllureDark from "../../assets/img/Allure-dark.svg";
 import AllureWhite from "../../assets/img/Allure-white.svg";
 import moon from "../../assets/img/moon.svg";
@@ -11,11 +11,26 @@ import sprite from "../../assets/img/sprite.svg";
 
 const Footer = (props) => {
   const categoriesList = useSelector((state) => state.categories.categoryList);
+  const body = document.getElementsByTagName("BODY")[0];
+
+  useEffect(() => {
+    if (localStorage.getItem("theme") == "dark") {
+      body.classList.toggle("dark");
+      props.setIsDark(true);
+    } else {
+      localStorage.setItem("theme", "white");
+    }
+  }, []);
 
   const bgModeHandler = () => {
-    const body = document.getElementsByTagName("BODY")[0];
-    body.classList.toggle("dark");
-    props.setIsDark(!props.isDark);
+    const isDark = body.classList.toggle("dark");
+    if (isDark) {
+      props.setIsDark(true);
+      localStorage.setItem("theme", "dark");
+    } else {
+      props.setIsDark(false);
+      localStorage.setItem("theme", "white");
+    }
   };
 
   return (
@@ -75,6 +90,7 @@ const Footer = (props) => {
                 className="switch__input"
                 type="checkbox"
                 onClick={bgModeHandler}
+                checked={props.isDark ? true : false}
               />
               <span className="switch__in">
                 <span className="switch__tick">
@@ -83,6 +99,7 @@ const Footer = (props) => {
                     src={moon}
                     alt=""
                   />
+
                   <img
                     className="switch__pic switch__pic_sun"
                     src={sun}
@@ -138,44 +155,44 @@ const Footer = (props) => {
           <div className="footer__col">
             <div className="footer__category">Legal</div>
             <div className="footer__menu">
-              <a className="footer__link" href="legal-page.html">
+              <Link className="footer__link" to={"#"}>
                 Terms of Service
-              </a>
-              <a className="footer__link" href="legal-page.html">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Privacy Policy
-              </a>
-              <a className="footer__link" href="legal-page.html">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Returns Policy
-              </a>
-              <a className="footer__link" href="legal-page.html">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Shipping
-              </a>
-              <a className="footer__link" href="legal-page.html">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Data Protection
-              </a>
+              </Link>
             </div>
           </div>
           <div className="footer__col">
             <div className="footer__category">Company</div>
             <div className="footer__menu">
-              <a className="footer__link" href="about-us.html">
+              <Link className="footer__link" to={`/${aboutUs}`}>
                 About
-              </a>
-              <a className="footer__link" href="faq.html">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Faq
-              </a>
-              <a className="footer__link" href="contacts.html">
+              </Link>
+              <Link className="footer__link" to={`/${contact}`}>
                 Contact
-              </a>
-              <a className="footer__link" href="careers-page.html">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Careers
-              </a>
-              <a className="footer__link" href="#">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Vision
-              </a>
-              <a className="footer__link" href="#">
+              </Link>
+              <Link className="footer__link" to={"#"}>
                 Culture
-              </a>
+              </Link>
             </div>
           </div>
         </div>

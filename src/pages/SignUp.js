@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SignUpForm from "../components/Form/SignUpForm";
+import { homePage } from "../Routes/Routes";
 
 const SignUp = () => {
   return (
@@ -8,9 +10,9 @@ const SignUp = () => {
         <div className="breadcrumbs__center center">
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link" href="index.html">
+              <Link className="breadcrumbs__link" to={`/${homePage}`}>
                 Home Page
-              </a>
+              </Link>
             </li>
             <li className="breadcrumbs__item">Sign Up</li>
           </ul>
